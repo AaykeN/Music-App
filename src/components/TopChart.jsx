@@ -8,7 +8,10 @@ const TopChart = () => {
   const playListCard = data?.slice(0, 3).map((playlist, index) => {
     console.log(playlist);
     return (
-      <div className="w-full flex flex-row items-center  bg-[#1A1E1F] rounded-3xl p-6 cursor-pointer mb-2">
+      <div
+        className="w-full flex flex-row items-center  bg-[#1A1E1F] rounded-3xl px-6 py-5 cursor-pointer mt-4"
+        key={playlist.id}
+      >
         <div className="flex-1 flex flex-row justify-between items-center">
           <img className="w-20 h-20 rounded-lg" src={playlist.cover} />
           <div className="flex-1 flex flex-col justify-center mx-3">
@@ -39,8 +42,8 @@ const TopChart = () => {
   });
 
   return (
-    <div className="flex-1">
-      <h2 className="text-2xl font-bold mb-2 text-white">Top Playlist</h2>
+    <div className="md:w-[100%] lg:w-[40%]">
+      <h2 className="text-2xl font-bold mb-2 text-white">Top Chart</h2>
       {playListCard}
     </div>
   );

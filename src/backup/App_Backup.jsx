@@ -14,12 +14,12 @@ import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
-    <div className="flex relative">
+    <div className="flex h-screen">
       <Router>
         <Sidebar />
         <div className="flex flex-col w-full">
           <Topbar />
-          <div className="flex-1 h-100vh">
+          <div className="flex-1">
             <Routes>
               <Route path="/" element={<Home />} />
             </Routes>
