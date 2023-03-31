@@ -1,12 +1,16 @@
-import { useGetNewMusicQuery } from "../redux/services/service";
+import { useQuery } from "react-query";
+import {
+  useGetNewMusicQuery,
+  useGetPopularMusicQuery,
+} from "../redux/services/service";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 
 import "swiper/css";
 import "swiper/css/free-mode";
 
-const NewRelease = () => {
-  const { data, isFetching, error } = useGetNewMusicQuery();
+const NewRelease = ({ useQueryHook }) => {
+  const { data, isFetching, error } = useQueryHook();
 
   const displayNewRelease = data?.map((song, index) => {
     return (
@@ -28,7 +32,11 @@ const NewRelease = () => {
 
   return (
     <div className="w-full mt-14">
-      <h2 className="text-2xl font-bold mb-2 text-white">New Releases</h2>
+      <h2 className="text-2xl font-bold mb-2 text-white">
+        {useQueryHook === useGetNewMusicQuery
+          ? "New Releases"
+          : "Popular In Your Area"}
+      </h2>
 
       <Swiper
         slidesPerView="auto"

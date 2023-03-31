@@ -13,7 +13,7 @@ const TopChart = () => {
         key={playlist.id}
       >
         <div className="flex-1 flex flex-row justify-between items-center">
-          <img className="w-20 h-20 rounded-lg" src={playlist.cover} />
+          <img className="w-20 h-20 rounded-2xl mr-2" src={playlist.cover} />
           <div className="flex-1 flex flex-col justify-center mx-3">
             <p className="text-xl font-normal text-white">{playlist.title}</p>
             <p className="text-base text-gray-300 mt-1 text-opacity-50">

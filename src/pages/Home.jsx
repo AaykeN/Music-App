@@ -1,6 +1,7 @@
 import {
   useGetNewMusicQuery,
   useGetPlaylistQuery,
+  useGetPopularMusicQuery,
 } from "../redux/services/service";
 import photo from "../assets/img/header_photo.png";
 import groupPhoto from "../assets/img/group-photo.png";
@@ -44,7 +45,6 @@ const CurratedPlaylist = () => {
     // </section>
   );
 };
-// const { data, isFetching, error } = useGetNewMusicQuery();
 
 const Home = () => {
   return (
@@ -55,7 +55,8 @@ const Home = () => {
       </section>
 
       <section>
-        <NewRelease />
+        <NewRelease useQueryHook={useGetNewMusicQuery} />
+        <NewRelease useQueryHook={useGetPopularMusicQuery} />
       </section>
     </div>
   );
