@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 
 // Components
+import MusicPlayer from "./components/MusicPlayer";
 import Home from "./pages/Home";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
@@ -26,6 +27,10 @@ function App() {
           </div>
         </div>
       </Router>
+
+      <div className="fixed h-28 bottom-0 left-0 right-0 flex bg-gradient-to-br from-white/5 to-[#151515] backdrop-blur-2xl z-10">
+        <MusicPlayer />
+      </div>
     </div>
   );
 }

@@ -30,7 +30,7 @@ const NavLinksBottom = () => (
 const Sidebar = () => {
   return (
     <>
-      <div className="flex flex-col items-center w-[120px] py-7 px-5 h-screen sticky top-0 z-10">
+      <div className="md:flex hidden flex-col items-center w-[120px] py-7 px-5 h-screen sticky top-0 z-10">
         <img
           src={logo}
           alt={logo}

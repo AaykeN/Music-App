@@ -8,11 +8,11 @@ import groupPhoto from "../assets/img/group-photo.png";
 import TopChart from "../components/TopChart";
 import { Link } from "react-router-dom";
 import NewRelease from "../components/NewRelease";
+import { useDispatch, useSelector } from "react-redux";
 
 const CurratedPlaylist = () => {
   return (
-    // <section className="flex flex-col lg:flex-row gap-10 px-7 py-7 flex-1 h-[530px] ">
-    <div className="bg-[#609EAF] md:w-[100%] lg:w-[60%] rounded-[40px] relative">
+    <div className="bg-[#609EAF] md:w-[100%] lg:w-[60%] rounded-[40px] relative h-[450px]">
       <div className=" flex h-[100%] gap-8">
         {/* Info */}
         <div className="flex-1 text-white flex flex-col justify-between p-10">
@@ -33,7 +33,7 @@ const CurratedPlaylist = () => {
         </div>
 
         {/* Pic */}
-        <div className="relative flex-1">
+        <div className="relative hidden lg:block lg:flex-1">
           <img
             src={photo}
             alt="guy-singing"
@@ -47,16 +47,26 @@ const CurratedPlaylist = () => {
 };
 
 const Home = () => {
+  const { activeSong, isPlaying } = useSelector((state) => state.player);
+
   return (
     <div className="px-7 py-7">
-      <section className="flex flex-col lg:flex-row gap-10 flex-1 h-fit ">
+      <section className="flex flex-col lg:flex-row gap-10 flex-1 ">
         <CurratedPlaylist />
         <TopChart />
       </section>
 
       <section>
-        <NewRelease useQueryHook={useGetNewMusicQuery} />
-        <NewRelease useQueryHook={useGetPopularMusicQuery} />
+        <NewRelease
+          useQueryHook={useGetNewMusicQuery}
+          isPlaying={isPlaying}
+          activeSong={activeSong}
+        />
+        <NewRelease
+          useQueryHook={useGetPopularMusicQuery}
+          isPlaying={isPlaying}
+          activeSong={activeSong}
+        />
       </section>
     </div>
   );

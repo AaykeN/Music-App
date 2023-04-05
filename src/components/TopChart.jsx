@@ -6,17 +6,16 @@ const TopChart = () => {
   const { data, isFetching, error } = useGetPlaylistQuery();
 
   const playListCard = data?.slice(0, 3).map((playlist, index) => {
-    console.log(playlist);
     return (
       <div
-        className="w-full flex flex-row items-center  bg-[#1A1E1F] rounded-3xl px-6 py-5 cursor-pointer mt-4"
+        className="w-full flex flex-row items-center bg-[#1A1E1F] rounded-3xl md:p-5 sm:p-4 p-3 cursor-pointer mb-4"
         key={playlist.id}
       >
         <div className="flex-1 flex flex-row justify-between items-center">
           <img className="w-20 h-20 rounded-2xl mr-2" src={playlist.cover} />
           <div className="flex-1 flex flex-col justify-center mx-3">
             <p className="text-xl font-normal text-white">{playlist.title}</p>
-            <p className="text-base text-gray-300 mt-1 text-opacity-50">
+            <p className="text-sm text-gray-300 mt-1 text-opacity-50">
               {playlist.info.replace(/^(.{40}[^\s]*).*/, "$1")}...
             </p>
             <p className="text-base text-gray-300 mt-1">12:24</p>
@@ -43,8 +42,10 @@ const TopChart = () => {
 
   return (
     <div className="md:w-[100%] lg:w-[40%]">
-      <h2 className="text-2xl font-bold mb-2 text-white">Top Chart</h2>
-      {playListCard}
+      <h2 className="text-2xl font-bold text-white mb-4">Top Chart</h2>
+      <div className="overflow-y-auto hide-scrollbar h-[420px] ">
+        {playListCard}
+      </div>
     </div>
   );
 };
