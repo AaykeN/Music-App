@@ -64,7 +64,7 @@ const NewRelease = ({ useQueryHook, isPlaying, activeSong }) => {
   });
 
   return (
-    <div className="w-full mt-14">
+    <div className="w-full mt-10">
       <h2 className="text-2xl font-bold mb-2 text-white">
         {useQueryHook === useGetNewMusicQuery
           ? "New Releases"

@@ -8,6 +8,7 @@ import groupPhoto from "../assets/img/group-photo.png";
 import TopChart from "../components/TopChart";
 import { Link } from "react-router-dom";
 import NewRelease from "../components/NewRelease";
+import { HiHeart } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 
 const CurratedPlaylist = () => {
@@ -26,9 +27,12 @@ const CurratedPlaylist = () => {
             </p>
           </div>
 
-          <div className="flex gap-3">
-            <img src={groupPhoto} alt="" />
-            <p>33k Likes</p>
+          <div className="flex gap-3 justify-start text-center ">
+            <img src={groupPhoto} alt="users" />
+            <div className="flex gap-2">
+              <HiHeart className="w-6 h-6" />
+              <p>33k Likes</p>
+            </div>
           </div>
         </div>
 
@@ -42,7 +46,6 @@ const CurratedPlaylist = () => {
         </div>
       </div>
     </div>
-    // </section>
   );
 };
 
@@ -50,7 +53,7 @@ const Home = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
   return (
-    <div className="px-7 py-7">
+    <div className="px-7 py-7 pb-[130px]">
       <section className="flex flex-col lg:flex-row gap-10 flex-1 ">
         <CurratedPlaylist />
         <TopChart />

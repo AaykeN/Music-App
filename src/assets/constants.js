@@ -6,10 +6,12 @@ import Profile from "./img/profile.svg";
 import Logout from "./img/Logout.svg";
 
 export const links = [
-  { name: "Discover", to: "/", icon: Home },
-  { name: "Around You", to: "/", icon: MusicLibrary },
-  { name: "Top Artists", to: "/", icon: Radio },
-  { name: "Top Charts", to: "/", icon: Videos },
+  { name: "Home", to: "/", icon: Home },
+  { name: "My Collection", to: "/", icon: MusicLibrary },
+  { name: "Radio", to: "/", icon: Radio },
+  { name: "Music Video", to: "/", icon: Videos },
+  { name: "Profile", to: "/", icon: Profile },
+  { name: "Log Out", to: "/", icon: Logout },
 ];
 
 export const linksBottom = [

@@ -43,7 +43,7 @@ const TopChart = () => {
   return (
     <div className="md:w-[100%] lg:w-[40%]">
       <h2 className="text-2xl font-bold text-white mb-4">Top Chart</h2>
-      <div className="overflow-y-auto hide-scrollbar h-[420px] ">
+      <div className="lg:overflow-y-auto  hide-scrollbar h-[420px] ">
         {playListCard}
       </div>
     </div>
