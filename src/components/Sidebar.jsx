@@ -3,7 +3,7 @@ import { RiCloseLine } from "react-icons/ri";
 import { HiOutlineMenu, HiMenuAlt4 } from "react-icons/hi";
 
 import { NavLink } from "react-router-dom";
-import { links, linksBottom } from "../assets/constants";
+import { links } from "../assets/constants";
 import { useState } from "react";
 
 const NavLinks = ({ handleClick, mobileMenuOpen }) => (

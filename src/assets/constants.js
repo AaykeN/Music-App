@@ -5,16 +5,21 @@ import Videos from "./img/videos.svg";
 import Profile from "./img/profile.svg";
 import Logout from "./img/Logout.svg";
 
+import playAll from "./img/playAll.svg";
+import addMusic from "./img/music-square-add.svg";
+import like from "./img/Heart.svg";
+
 export const links = [
   { name: "Home", to: "/", icon: Home },
-  { name: "My Collection", to: "/", icon: MusicLibrary },
-  { name: "Radio", to: "/", icon: Radio },
-  { name: "Music Video", to: "/", icon: Videos },
+  { name: "My Collection", to: "/collections", icon: MusicLibrary },
+  { name: "Radio", to: "/radio", icon: Radio },
+  { name: "Music Video", to: "/videos", icon: Videos },
   { name: "Profile", to: "/", icon: Profile },
   { name: "Log Out", to: "/", icon: Logout },
 ];
 
-export const linksBottom = [
-  { name: "Profile", to: "/", icon: Profile },
-  { name: "Log Out", to: "/", icon: Logout },
+export const playListButton = [
+  { name: "Play All", icon: playAll },
+  { name: "Add to Collection", icon: addMusic },
+  { name: "Like", icon: like },
 ];

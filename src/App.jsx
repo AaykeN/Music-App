@@ -8,10 +8,14 @@ import {
 } from "react-router-dom";
 
 // Components
-import MusicPlayer from "./components/MusicPlayer";
 import Home from "./pages/Home";
+import Radio from "./pages/Radio";
+import Videos from "./pages/Videos";
+import Playlist from "./pages/Playlist";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
+import MusicPlayer from "./components/MusicPlayer";
+import Collections from "./pages/Collections";
 
 function App() {
   return (
@@ -23,6 +27,10 @@ function App() {
           <div className="flex-1 h-100vh">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/collections" element={<Collections />} />
+              <Route path="/playlist/:playlistId" element={<Playlist />} />
+              <Route path="/radio" element={<Radio />} />
+              <Route path="/videos" element={<Videos />} />
             </Routes>
           </div>
         </div>
