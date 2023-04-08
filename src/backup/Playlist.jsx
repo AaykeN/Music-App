@@ -26,7 +26,7 @@ const Playlist = () => {
           <img
             src={playlist?.cover}
             alt="cover_art"
-            className="rounded-[50px] w-full h-auto aspect-square sm:w-[370px] sm:h-[370px] object-cover object-center "
+            className="rounded-[50px] w-full sm:w-[370px] sm:h-[370px] object-cover object-center "
           />
           <div className="mt-7 lg:mt-0">
             <h2 className="text-[#A4C7C6] text-4xl font-bold mb-3">
@@ -53,10 +53,10 @@ const Playlist = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 mt-5 lg:mt-16">
+        <div className="flex flex-col gap-3 mt-16">
           {playListSongs?.map((song) => (
             <div
-              className="bg-[#33373B]/[37%] rounded-2xl flex py-2 px-3 md:p-3 items-center gap-4 md:gap-10 lg:gap-28 "
+              className="bg-[#33373B]/[37%] rounded-2xl flex p-3 items-center gap-4 md:gap-16 "
               key={song.id}
             >
               <div className="flex items-center">
@@ -65,27 +65,23 @@ const Playlist = () => {
                   alt="art cover"
                   className="w-14 h-auto rounded-lg object-cover"
                 />
-                <div className="md:ml-3 lg:ml-5 hidden md:block">
+                <div className="md:ml-5 hidden md:block">
                   <HiOutlineHeart className="w-6 h-auto" />
                 </div>
               </div>
-              <div className="flex w-full md:items-center text-sm lg:text-base font-light">
-                <div className="md:flex-1 flex-1 flex flex-col md:flex-row md:items-center shrink-0 gap-1 md:gap-0">
-                  <p className=" flex-1 shrink-0 text-start">
-                    {song.title} - {song.artist}
+              <div className="flex w-full md:items-center text-base font-light">
+                <div className="flex-1 flex flex-col md:flex-row md:items-center">
+                  <p className=" flex-1 flex-shrink-0 text-start SONGTITLE">
+                    {song.title}- {song.artist}
                   </p>
-                  <p className=" flex-1 text-start md:text-center text-xs md:text-base">
-                    Single
-                  </p>
+                  <p className=" flex-1 text-start md:text-center">Single</p>
                 </div>
-                <div className="md:flex-1 lg:flex-1 flex flex-col-reverse md:flex-row shrink gap-1 md:gap-0 items-end md:items-center ">
-                  <div className="flex-1 flex justify-center">
-                    <p className="text-end md:text-center text-xs md:text-base">
-                      {song.duration}
-                    </p>
-                  </div>
-                  <div className="flex-1 flex flex-shrink-5 justify-end items-center">
-                    <HiDotsVertical className="lg:mr-6 text-[#FACD66]" />
+                <div className="md:flex-1 flex flex-col-reverse md:flex-row ">
+                  <p className=" flex-1 text-end md:text-center p3">
+                    {song.duration}
+                  </p>
+                  <div className="flex-1 flex flex-shrink-5 justify-end p4">
+                    <HiDotsVertical />
                   </div>
                 </div>
               </div>
@@ -98,3 +94,50 @@ const Playlist = () => {
 };
 
 export default Playlist;
+
+// <div
+//   className="bg-[#33373B]/[37%] rounded-2xl flex p-3 items-center justify-between"
+//   key={song.id}
+// >
+//   <div className="flex items-center gap-3 max-w-[200px] w-[100%]">
+//     <img src={song.cover} alt="" className="w-12 h-12 rounded-lg" />
+//     <HiOutlineHeart />
+//   </div>
+//   <div className="flex flex-col justify-center flex-grow-1 flex-basis-0 max-w-[800px] w-[100%] md:flex-row md:justify-between">
+//     <p className="">
+//       {song.title}- {song.artist}
+//     </p>
+//     <p className="">Single</p>
+//   </div>
+//   <div className="flex flex-col justify-center flex-grow-1 flex-basis-0 max-w-[500px] w-[100%] md:flex-row md:justify-between">
+//     <p className="">{song.duration}</p>
+//     <HiDotsVertical />
+//   </div>
+// </div>;
+
+// ------------------
+// <div className="flex flex-col gap-3 mt-16">
+//   {playListSongs?.map((song) => (
+//     <div
+//       className="bg-[#33373B]/[37%] rounded-2xl flex p-3 items-center gap-16"
+//       key={song.id}
+//     >
+//       <div className="flex items-center gap-3 ">
+//         <img
+//           src={song.cover}
+//           alt="art cover"
+//           className="w-12 h-12 rounded-lg"
+//         />
+//         <HiOutlineHeart className="w-4 -4" />
+//       </div>
+//       <div className="flex flex-col justify-start md:flex-row md:justify-between w-full">
+//         <p className=" max-w-[300px] w-[100%] ">
+//           {song.title}- {song.artist}
+//         </p>
+//         <p className="">Single</p>
+//         <p className="">{song.duration}</p>
+//         <HiDotsVertical />
+//       </div>
+//     </div>
+//   ))}
+// </div>;
