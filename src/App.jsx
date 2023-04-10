@@ -16,6 +16,8 @@ import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
 import MusicPlayer from "./components/MusicPlayer";
 import Collections from "./pages/Collections";
+import Profile from "./pages/Profile";
+import Logout from "./pages/Logout";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
               <Route path="/playlist/:playlistId" element={<Playlist />} />
               <Route path="/radio" element={<Radio />} />
               <Route path="/videos" element={<Videos />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/logout" element={<Logout />} />
             </Routes>
           </div>
         </div>

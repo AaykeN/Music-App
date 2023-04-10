@@ -8,7 +8,7 @@ const Track = ({ isPlaying, isActive, activeSong }) => (
           <img
             src={activeSong ? activeSong?.cover : ""}
             alt={activeSong?.cover ? "Cover Art" : ""}
-            className="rounded-2xl smooth-transition w-14 sm:w-16"
+            className="rounded-2xl smooth-transition aspect-square object-cover"
           />
         </div>
         <div className="w-[50%]">

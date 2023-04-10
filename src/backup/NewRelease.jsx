@@ -89,3 +89,18 @@ const NewRelease = ({ useQueryHook, isPlaying, activeSong }) => {
 };
 
 export default NewRelease;
+
+{
+  /* {isFetching ? (
+          <div className="flex gap-8  ">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <div
+                key={index}
+                className="w-[190px] h-[190px] rounded-3xl animate-pulse bg-gray-300 dark:bg-gray-700"
+              />
+            ))}
+          </div>
+        ) : (
+          displayNewRelease
+          )} */
+}

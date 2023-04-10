@@ -2,8 +2,30 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useGetPlaylistQuery } from "../redux/services/service";
 
+const PlaylistCardSkeleton = () => (
+  <div className="md:w-full min-w-[400px] flex flex-row items-center bg-[#1A1E1F] rounded-3xl md:p-5 sm:p-4 p-3 cursor-pointer mb-4 animate-pulse">
+    <div className="flex-1 flex lg:flex-row justify-between md:items-center items-start ">
+      <div className="lg:flex ">
+        <div className="mx-3 lg:mx-0 mb-3 lg:mb-0">
+          <div className="w-32 h-32 md:w-20 md:h-20 rounded-2xl bg-gray-700"></div>
+        </div>
+        <div className="flex-1 flex flex-col justify-center mx-3">
+          <div className="w-48 h-6 rounded-lg bg-gray-700"></div>
+          <div className="w-40 h-4 rounded-lg bg-gray-700 mt-1"></div>
+          <div className="w-20 h-4 rounded-lg bg-gray-700 mt-7"></div>
+        </div>
+      </div>
+      <div className="flex">
+        <div className="p-2 border-[1px] rounded-full border-gray-500 bg-gray-700"></div>
+      </div>
+    </div>
+  </div>
+);
+
 const TopChart = () => {
   const { data, isFetching, error } = useGetPlaylistQuery();
+
+  // const isFetching = true;
 
   const playListCard = data?.slice(0, 3).map((playlist, index) => {
     return (
@@ -54,7 +76,12 @@ const TopChart = () => {
     <div className="md:w-[100%] lg:w-[40%] w-100%">
       <h2 className="text-2xl font-bold text-white mb-4">Top Chart</h2>
       <div className="md:block flex lg:overflow-y-auto overflow-x-scroll hide-scrollbar md:h-[420px] h-[320px] md:gap-0 gap-7">
-        {playListCard}
+        {/* {isFetching ? (
+          <div className="md:w-full min-w-[400px]  flex flex-row items-center dark:bg-gray-700 animate-pulse rounded-3xl md:p-5 sm:p-4 p-3 cursor-pointer mb-4"></div>
+        ) : (
+          playListCard
+        )} */}
+        {isFetching ? <PlaylistCardSkeleton /> : playListCard}
       </div>
     </div>
   );
