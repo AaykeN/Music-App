@@ -37,21 +37,37 @@ const Playlist = () => {
               <p>{playListSongs?.length} Songs ~ 16 hrs+</p>
             </div>
             <div className="flex gap-4 mt-5 lg:mt-14 flex-wrap md:flex-nowrap">
-              {playListButton.map((button, index) => (
-                <button
-                  key={index}
-                  className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] rounded-full text-start flex items-center gap-2 md:gap-3"
-                >
-                  <img
-                    src={button.icon}
-                    alt={button.name}
-                    className="h-5 w-auto"
-                  />
-                  <p className="font-light text-xs md:text-sm ">
-                    {button.name}
-                  </p>
-                </button>
-              ))}
+              {playListButton.map((button, index) => {
+                const Icon = button.icon;
+
+                return (
+                  <div key={index}>
+                    {button.name === "Like" ? (
+                      <button className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] lg:px-[10px] rounded-full text-start flex items-center gap-2 md:gap-3">
+                        <Icon
+                          className="h-5 w-auto"
+                          alt={button.name}
+                          playlist={playlist}
+                        />
+                        <p className="font-light text-xs md:text-sm lg:hidden block">
+                          {button.name}
+                        </p>
+                      </button>
+                    ) : (
+                      <button
+                        key={index}
+                        className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] rounded-full text-start flex items-center gap-2 md:gap-3"
+                      >
+                        <Icon className="h-5 w-auto" alt={button.name} />
+
+                        <p className="font-light text-xs md:text-sm">
+                          {button.name}
+                        </p>
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -66,13 +82,11 @@ const Playlist = () => {
             // Check if this song is active
             const isActiveSong = activeSong && activeSong.id === song.id;
 
-            console.log(song);
-
             return (
               <div
                 onClick={handlePlayClick}
                 className={`bg-[#33373B]/[37%] hover:bg-[#2e323440]  cursor-pointer rounded-2xl flex py-2 px-3 md:p-3 items-center gap-4 md:gap-10 lg:gap-28`}
-                key={song.id}
+                key={`song-${song.id}`}
               >
                 <div className="flex items-center">
                   <img
@@ -120,3 +134,19 @@ const Playlist = () => {
 };
 
 export default Playlist;
+
+// <button
+//   key={index}
+//   className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] rounded-full text-start flex items-center gap-2 md:gap-3"
+// >
+//   <Icon className="h-5 w-auto" alt={button.name} />
+//   {button.name === "Like" ? (
+//     <p className="font-light text-xs md:text-sm lg:hidden block">
+//       {button.name}
+//     </p>
+//   ) : (
+//     <p className="font-light text-xs md:text-sm">
+//       {button.name}
+//     </p>
+//   )}
+// </button>;

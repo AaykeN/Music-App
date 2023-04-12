@@ -1,6 +1,7 @@
-import playAll from "./img/playAll.svg";
-import addMusic from "./img/music-square-add.svg";
+import { ReactComponent as addMusic } from "./img/music-square-add.svg";
+import { ReactComponent as playAll } from "./img/playAll.svg";
 import like from "./img/Heart.svg";
+import LikeButton from "../components/LikeButton";
 
 import { ReactComponent as Home } from "./img/Home-1.svg";
 import { ReactComponent as MusicLibrary } from "./img/music-library-2-1.svg";
@@ -21,5 +22,5 @@ export const links = [
 export const playListButton = [
   { name: "Play All", icon: playAll },
   { name: "Add to Collection", icon: addMusic },
-  { name: "Like", icon: like },
+  { name: "Like", icon: LikeButton },
 ];
