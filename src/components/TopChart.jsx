@@ -7,7 +7,7 @@ import {
   addFavourite,
   removeFavourite,
 } from "../redux/features/favouriteSlice";
-import LikeButton from "./LikeButton";
+import LikeButton from "./Buttons/LikeButton";
 
 const PlaylistCardSkeleton = () => (
   <div className="md:w-full min-w-[400px] flex flex-row items-center bg-[#1A1E1F] rounded-3xl md:p-5 sm:p-4 p-3 cursor-pointer mb-4 animate-pulse">

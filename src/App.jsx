@@ -18,7 +18,7 @@ import Collections from "./pages/Collections";
 import Profile from "./pages/Profile";
 import Logout from "./pages/Logout";
 import MyCollection from "./components/MyCollection";
-import LikedItem from "./components/LikedItem";
+import Likes from "./pages/Likes";
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/collections" element={<Collections />}>
                 <Route path="" element={<MyCollection />} />
-                <Route path="likes" element={<LikedItem />} />
+                <Route path="likes" element={<Likes />} />
               </Route>
               <Route path="/playlist/:playlistId" element={<Playlist />} />
               <Route path="/radio" element={<Radio />} />

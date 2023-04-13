@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addFavourite,
   removeFavourite,
-} from "../redux/features/favouriteSlice";
+} from "../../redux/features/favouriteSlice";
 import { useEffect, useState } from "react";
 
 const LikeButton = ({ playlist }) => {
@@ -11,7 +11,7 @@ const LikeButton = ({ playlist }) => {
   const dispatch = useDispatch();
   const [liked, setLiked] = useState(() => {
     const isFavouritePlaylist = favourites.some(
-      (favourite) => favourite.id === playlist.id
+      (favourite) => favourite.id === playlist?.id
     );
     return !!isFavouritePlaylist;
   });

@@ -6,12 +6,6 @@ import { useQuery } from "react-query";
 import { useGetPlaylistQuery } from "../redux/services/service";
 import { HiDotsVertical, HiOutlineHeart } from "react-icons/hi";
 
-import { ReactComponent as addCollection } from "../assets/img/music-square-add.svg";
-import { ReactComponent as playAll } from "../assets/img/playAll.svg";
-import LikeButton from "../components/Buttons/LikeButton";
-import AddCollectionBtn from "../components/Buttons/AddCollectionBtn";
-import PlayAllBtn from "../components/Buttons/PlayAllBtn";
-
 const findPlaylist = (playlistId) => {
   const { data, isFetching, error } = useGetPlaylistQuery();
   const playlist = data?.find((p) => p.id === playlistId);
@@ -43,21 +37,37 @@ const Playlist = () => {
               <p>{playListSongs?.length} Songs ~ 16 hrs+</p>
             </div>
             <div className="flex gap-4 mt-5 lg:mt-14 flex-wrap md:flex-nowrap">
-              <button className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] rounded-full text-start flex items-center gap-2 md:gap-3">
-                <PlayAllBtn />
-              </button>
-              <AddCollectionBtn playlist={{ playlist }} />
+              {playListButton.map((button, index) => {
+                const Icon = button.icon;
 
-              <button className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] lg:px-[10px] rounded-full text-start flex items-center gap-2 md:gap-3">
-                <LikeButton
-                  className="h-5 w-auto"
-                  alt="Like"
-                  playlist={playlist}
-                />
-                <p className="font-light text-xs md:text-sm lg:hidden block">
-                  Like
-                </p>
-              </button>
+                return (
+                  <div key={index}>
+                    {button.name === "Like" ? (
+                      <button className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] lg:px-[10px] rounded-full text-start flex items-center gap-2 md:gap-3">
+                        <Icon
+                          className="h-5 w-auto"
+                          alt={button.name}
+                          playlist={playlist}
+                        />
+                        <p className="font-light text-xs md:text-sm lg:hidden block">
+                          {button.name}
+                        </p>
+                      </button>
+                    ) : (
+                      <button
+                        key={index}
+                        className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] rounded-full text-start flex items-center gap-2 md:gap-3"
+                      >
+                        <Icon className="h-5 w-auto" alt={button.name} />
+
+                        <p className="font-light text-xs md:text-sm">
+                          {button.name}
+                        </p>
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

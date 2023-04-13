@@ -1,9 +1,17 @@
-import React, { useState } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 
 const Collections = () => {
+  const location = useLocation();
   const [activeButton, setActiveButton] = useState("collection");
 
+  useEffect(() => {
+    if (location.pathname.includes("likes")) {
+      setActiveButton("likes");
+    } else {
+      setActiveButton("collection");
+    }
+  }, [location.pathname]);
   const handleButtonClick = (button) => {
     setActiveButton(button);
   };
@@ -13,8 +21,8 @@ const Collections = () => {
       <div className="flex gap-3 mb-6">
         <Link to="/collections">
           <button
-            className={`hover:bg-[#FACD66] border-[#595b59] text-[#595b59] hover:text-[#131313] font-medium border-[1px] rounded-full px-[20px] py-[10px] ${
-              activeButton === "collection" ? "bg-[#FACD66] text-[#131313]" : ""
+            className={`hover:bg-[#FACD66] border-[#595b59] text-[#595b59] font-medium border-[1px] rounded-full px-[20px] py-[10px] ${
+              activeButton === "collection" ? "bg-[#FACD66] text-[#181818]" : ""
             }`}
             onClick={() => handleButtonClick("collection")}
           >
@@ -23,8 +31,8 @@ const Collections = () => {
         </Link>
         <Link to="/collections/likes">
           <button
-            className={`hover:bg-[#FACD66] border-[#595b59] text-[#595b59] border-[1px] hover:text-[#131313] font-medium rounded-full px-[20px] py-[10px] ${
-              activeButton === "likes" ? "bg-[#FACD66] text-[#131313]" : ""
+            className={`hover:bg-[#FACD66] border-[#595b59] text-[#595b59] border-[1px] font-medium rounded-full px-[20px] py-[10px] ${
+              activeButton === "likes" ? "bg-[#FACD66] text-[#181818]" : ""
             }`}
             onClick={() => handleButtonClick("likes")}
           >
