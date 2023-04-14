@@ -5,6 +5,7 @@
 :root {
   font-family: "Quicksand", sans-serif;
   background-color: #1d2123;
+  height: 100%;
 }
 
 body {
@@ -12,6 +13,45 @@ body {
   min-height: 100vh;
   max-width: 1920px;
   margin: 0 auto;
+}
+
+.playlist-container {
+  position: relative;
+}
+
+.playlist-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+#playlistContainer {
+  position: relative;
+  z-index: 0; /* make sure the background image is behind the content */
+}
+
+#playlistContainer::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.02; /* set the opacity for the background image */
+  z-index: -1; /* make sure the background image is behind the content */
+}
+
+.box-shadow {
+  box-shadow: 0px 0px 18px rgba(255, 255, 255, 0.3);
 }
 
 /* -------------------- If this is turn on (mid-width), when in smaller screen, I can scroll it */
@@ -42,6 +82,6 @@ body {
   color: #facd66 !important;
 }
 
-/* .sidebarIcon {
-  fill: #51504f;
-} */
+.input-range {
+  accent-color: #facd66;
+}

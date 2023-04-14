@@ -25,7 +25,16 @@ const playerSlice = createSlice({
         state.currentSongs = action.payload.data;
       }
 
-      state.currentIndex = action.payload.i;
+      // Check if activeSong and currentIndex have already been set
+      const isActiveSongSet =
+        state.activeSong && state.activeSong.id === action.payload.song.id;
+      const isCurrentIndexSet = state.currentIndex === action.payload.i;
+
+      // Set activeSong and currentIndex only if they haven't been set yet
+      if (!isActiveSongSet || !isCurrentIndexSet) {
+        state.activeSong = action.payload.song;
+        state.currentIndex = action.payload.i;
+      }
       state.isActive = true;
     },
 

@@ -2,15 +2,12 @@ import { playListButton } from "../assets/constants";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setActiveSong, playPause } from "../redux/features/playerSlice";
-import { useQuery } from "react-query";
 import { useGetPlaylistQuery } from "../redux/services/service";
-import { HiDotsVertical, HiOutlineHeart } from "react-icons/hi";
 
-import { ReactComponent as addCollection } from "../assets/img/music-square-add.svg";
-import { ReactComponent as playAll } from "../assets/img/playAll.svg";
 import LikeButton from "../components/Buttons/LikeButton";
 import AddCollectionBtn from "../components/Buttons/AddCollectionBtn";
 import PlayAllBtn from "../components/Buttons/PlayAllBtn";
+import PlaylistSongCard from "../components/Cards/PlaylistSongCard";
 
 const findPlaylist = (playlistId) => {
   const { data, isFetching, error } = useGetPlaylistQuery();
@@ -26,6 +23,13 @@ const Playlist = () => {
     (state) => state.persisted.player
   );
   const playListSongs = playlist?.files;
+  const handlePlayClick = (song, i) => {
+    dispatch(setActiveSong({ song, data: playlist.files, i }));
+    dispatch(playPause(true));
+  };
+
+  console.log(playlist);
+
   return (
     <>
       <div className="text-white text-xl px-7 py-7 pb-[130px]">
@@ -44,7 +48,10 @@ const Playlist = () => {
               <p>{playListSongs?.length} Songs ~ 16 hrs+</p>
             </div>
             <div className="flex gap-4 mt-5 lg:mt-14 flex-wrap md:flex-nowrap">
-              <button className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] rounded-full text-start flex items-center gap-2 md:gap-3">
+              <button
+                className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] rounded-full text-start flex items-center gap-2 md:gap-3"
+                onClick={() => handlePlayClick(playlist.files[0], 0)}
+              >
                 <PlayAllBtn />
               </button>
               <AddCollectionBtn playlist={playlist} />
@@ -63,59 +70,23 @@ const Playlist = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 mt-5 lg:mt-16">
+        <div className="flex flex-col gap-3 mt-5 lg:mt-14">
           {playListSongs?.map((song, i) => {
             const handlePlayClick = () => {
-              dispatch(setActiveSong({ song, data, i }));
+              dispatch(setActiveSong({ song, data: playlist.files, i }));
               dispatch(playPause(true));
             };
 
             // Check if this song is active
             const isActiveSong = activeSong && activeSong.id === song.id;
-
             return (
-              <div
-                onClick={handlePlayClick}
-                className={`bg-[#33373B]/[37%] hover:bg-[#2e323440]  cursor-pointer rounded-2xl flex py-2 px-3 md:p-3 items-center gap-4 md:gap-10 lg:gap-28`}
-                key={`song-${song.id}`}
-              >
-                <div className="flex items-center">
-                  <img
-                    src={song.cover}
-                    alt="art cover"
-                    className="w-14 h-auto rounded-lg object-cover"
-                  />
-                  <div className="md:ml-3 lg:ml-5 hidden md:block">
-                    <HiOutlineHeart className="w-6 h-auto text-white" />
-                  </div>
-                </div>
-                <div className="flex w-full md:items-center text-sm lg:text-base font-light">
-                  <div
-                    className={`flex-1 flex flex-col min-w-0 w-40  md:flex-row md:items-center gap-1 md:gap-0 `}
-                  >
-                    <p
-                      className={`truncate flex-1 text-start ${
-                        isActiveSong ? "text-[#FACD66]" : ""
-                      }`}
-                    >
-                      {song.title} - {song.artist}
-                    </p>
-                    <p className=" flex-1 text-start md:text-center text-xs md:text-base">
-                      Single
-                    </p>
-                  </div>
-                  <div className="md:flex-1 lg:flex-1 flex flex-col-reverse md:flex-row shrink gap-1 md:gap-0 items-end md:items-center ">
-                    <div className="flex-1 flex justify-center">
-                      <p className="text-end md:text-center text-xs md:text-base">
-                        {song.duration}
-                      </p>
-                    </div>
-                    <div className="flex-1 flex flex-shrink-5 justify-end items-center">
-                      <HiDotsVertical className="lg:mr-6 text-[#FACD66]" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <PlaylistSongCard
+                isActiveSong={isActiveSong}
+                handlePlayClick={() => handlePlayClick(song, i)}
+                // handlePlayClick={handlePlayClick}
+                song={song}
+                key={`PlaylistSongCard-${i}`}
+              />
             );
           })}
         </div>

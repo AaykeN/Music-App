@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import {
@@ -8,14 +7,12 @@ import {
 import PlayPause from "./PlayPause";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
-
 import "swiper/css";
 import "swiper/css/free-mode";
+import Loader from "./Loader";
 
 const NewRelease = ({ useQueryHook, isPlaying, activeSong }) => {
   const { data, isFetching, error } = useQueryHook();
-  // const isFetching = true;
-
   const dispatch = useDispatch();
 
   const displayNewRelease = data?.map((song, i) => {
@@ -27,8 +24,6 @@ const NewRelease = ({ useQueryHook, isPlaying, activeSong }) => {
       dispatch(setActiveSong({ song, data, i }));
       dispatch(playPause(true));
     };
-
-    if (error) return <h1>Error Loading Song</h1>;
 
     return (
       <SwiperSlide style={{ width: "auto", height: "auto" }} key={song.id}>
@@ -72,7 +67,6 @@ const NewRelease = ({ useQueryHook, isPlaying, activeSong }) => {
           ? "New Releases"
           : "Popular In Your Area"}
       </h2>
-
       <Swiper
         slidesPerView="auto"
         spaceBetween={35}
@@ -84,6 +78,9 @@ const NewRelease = ({ useQueryHook, isPlaying, activeSong }) => {
       >
         {displayNewRelease}
       </Swiper>
+
+      {isFetching && <Loader className="h-100%" />}
+      {error && <h1>Error Loading Song</h1>}
     </div>
   );
 };

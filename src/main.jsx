@@ -10,6 +10,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 
 let persistor = persistStore(store);
+// persistor.purge(["player"]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

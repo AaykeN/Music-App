@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import PlaylistCard from "./Cards/PlaylistCard";
+import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
 const MyCollection = () => {
   const { collections } = useSelector((state) => state.persisted.collections);
@@ -15,13 +16,16 @@ const MyCollection = () => {
         </>
       )}
       <div className="flex-1 sm:flex sm:flex-nowrap flex-wrap md:gap-[30px] gap-[20px]">
-        {collections?.map((playlist, index) => (
-          <PlaylistCard
-            playlist={playlist}
-            index={index}
-            key={`playlistCard-${index}`}
-          />
-        ))}
+        {collections?.map((playlist, index) => {
+          return (
+            <PlaylistCard
+              collections={collections}
+              playlist={playlist}
+              index={index}
+              key={`playlistCard-${index}`}
+            />
+          );
+        })}
       </div>
     </>
   );

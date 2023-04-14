@@ -1,9 +1,12 @@
 import { useSelector } from "react-redux";
 import PlaylistCard from "../components/Cards/PlaylistCard";
+import Loader from "../components/Loader";
 
 const Likes = () => {
-  const { favourites } = useSelector((state) => state.persisted.favourites);
-  console.log(favourites);
+  const { favourites, isFetching } = useSelector(
+    (state) => state.persisted.favourites
+  );
+
   return (
     <>
       {!favourites.length && (
@@ -13,14 +16,17 @@ const Likes = () => {
           </div>
         </>
       )}
+
       <div className="flex flex-wrap md:gap-[30px] gap-[20px]">
         {favourites?.map((playlist, index) => (
           <PlaylistCard
+            favourites={favourites}
             playlist={playlist}
             index={index}
             key={`likesCard-${index}`}
           />
         ))}
+        {isFetching && <Loader className="h-100%" />}
       </div>
     </>
   );
