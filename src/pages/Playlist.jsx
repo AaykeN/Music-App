@@ -22,9 +22,10 @@ const Playlist = () => {
   const dispatch = useDispatch();
   const { playlistId } = useParams();
   const { playlist, isFetching, error, data } = findPlaylist(playlistId);
-  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const { activeSong, isPlaying } = useSelector(
+    (state) => state.persisted.player
+  );
   const playListSongs = playlist?.files;
-
   return (
     <>
       <div className="text-white text-xl px-7 py-7 pb-[130px]">
@@ -46,7 +47,7 @@ const Playlist = () => {
               <button className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] rounded-full text-start flex items-center gap-2 md:gap-3">
                 <PlayAllBtn />
               </button>
-              <AddCollectionBtn playlist={{ playlist }} />
+              <AddCollectionBtn playlist={playlist} />
 
               <button className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] lg:px-[10px] rounded-full text-start flex items-center gap-2 md:gap-3">
                 <LikeButton

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import PlaylistCard from "../components/Cards/PlaylistCard";
 
 const Likes = () => {
-  const { favourites } = useSelector((state) => state.favourites);
+  const { favourites } = useSelector((state) => state.persisted.favourites);
   console.log(favourites);
   return (
     <>
@@ -15,7 +15,11 @@ const Likes = () => {
       )}
       <div className="flex flex-wrap md:gap-[30px] gap-[20px]">
         {favourites?.map((playlist, index) => (
-          <PlaylistCard playlist={playlist} index={index} />
+          <PlaylistCard
+            playlist={playlist}
+            index={index}
+            key={`likesCard-${index}`}
+          />
         ))}
       </div>
     </>

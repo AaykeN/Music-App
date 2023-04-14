@@ -50,7 +50,9 @@ const CurratedPlaylist = () => {
 };
 
 const Home = () => {
-  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const { activeSong, isPlaying } = useSelector(
+    (state) => state.persisted.player
+  );
 
   return (
     <div className="px-7 py-7 pb-[130px]">

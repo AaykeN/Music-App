@@ -8,12 +8,11 @@ import {
 } from "../../redux/features/collectionSlice";
 
 const AddCollectionBtn = ({ playlist }) => {
-  const { collections } = useSelector((state) => state.collections);
+  const { collections } = useSelector((state) => state.persisted.collections);
   const dispatch = useDispatch();
-  console.log(collections);
   const [isInCollection, setIsInCollection] = useState(() => {
-    const isAlreadyInCollection = collections.some(
-      (collection) => collection.id === playlist.id
+    const isAlreadyInCollection = collections.find(
+      (collection) => collection.id === playlist?.id
     );
     return !!isAlreadyInCollection;
   });

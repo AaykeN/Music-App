@@ -2,11 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const PlaylistCard = ({ playlist, index }) => {
-  console.log(playlist.playlist);
-
   return (
     <Link to={`/playlist/${playlist.id}`} key={`playlist-${index}`}>
-      <div className="overflow-hidden cursor-pointer rounded-3xl relative group aspect-auto flex animate-slowfade">
+      <div className="overflow-hidden cursor-pointer rounded-3xl relative group aspect-auto flex animate-slowfade md:mt-0 mb-[20px]">
         <div className="rounded-lg z-20 cursor-pointer absolute from-black/90 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-20 text-white flex items-end">
           <div>
             <div className="p-4 text-xl">
@@ -21,7 +19,7 @@ const PlaylistCard = ({ playlist, index }) => {
         </div>
         <img
           alt={playlist.title}
-          className="flex object-cover object-top group-hover:scale-110 transition duration-300 ease-in-out md:w-[270px] md:h-[290px] w-[200px] h-[220px] aspect-square"
+          className="flex object-cover object-center group-hover:scale-110 transition duration-300 ease-in-out sm:w-[270px] aspect-square w-full"
           src={playlist.cover}
         />
       </div>

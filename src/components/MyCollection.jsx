@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import PlaylistCard from "./Cards/PlaylistCard";
 
 const MyCollection = () => {
-  const { collections } = useSelector((state) => state.collections);
-  console.log(collections);
+  const { collections } = useSelector((state) => state.persisted.collections);
 
   return (
     <>
@@ -15,9 +14,13 @@ const MyCollection = () => {
           </div>
         </>
       )}
-      <div className="flex flex-wrap md:gap-[30px] gap-[20px]">
+      <div className="flex-1 sm:flex sm:flex-nowrap flex-wrap md:gap-[30px] gap-[20px]">
         {collections?.map((playlist, index) => (
-          <PlaylistCard playlist={playlist.playlist} index={index} />
+          <PlaylistCard
+            playlist={playlist}
+            index={index}
+            key={`playlistCard-${index}`}
+          />
         ))}
       </div>
     </>

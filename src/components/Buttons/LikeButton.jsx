@@ -7,7 +7,7 @@ import {
 import { useEffect, useState } from "react";
 
 const LikeButton = ({ playlist }) => {
-  const { favourites } = useSelector((state) => state.favourites);
+  const { favourites } = useSelector((state) => state.persisted.favourites);
   const dispatch = useDispatch();
   const [liked, setLiked] = useState(() => {
     const isFavouritePlaylist = favourites.some(

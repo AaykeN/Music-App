@@ -3,14 +3,33 @@ import { configureStore } from "@reduxjs/toolkit";
 import playerReducer from "./features/playerSlice";
 import favouriteReducer from "./features/favouriteSlice";
 import collectionReducer from "./features/collectionSlice";
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
+import { combineReducers } from "@reduxjs/toolkit";
+
+const persistConfig = {
+  key: "root",
+  version: 1,
+  storage,
+};
+
+const rootReducer = combineReducers({
+  favourites: favouriteReducer,
+  collections: collectionReducer,
+  player: playerReducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: {
     [musicApi.reducerPath]: musicApi.reducer,
-    player: playerReducer,
-    favourites: favouriteReducer,
-    collections: collectionReducer,
+    persisted: persistedReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(musicApi.middleware),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ["persist/PERSIST"],
+      },
+    }).concat(musicApi.middleware),
 });
