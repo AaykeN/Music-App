@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import PlaylistCard from "./Cards/PlaylistCard";
 
 const MyCollection = () => {
-  const { collections } = useSelector((state) => state.persisted.collections);
+  const { collections, isFetching } = useSelector(
+    (state) => state.persisted.collections
+  );
 
   const [currentPlaylist, setCurrentPlaylist] = useState(null);
   console.log(currentPlaylist);
@@ -35,6 +37,7 @@ const MyCollection = () => {
             />
           );
         })}
+        {isFetching && <Loader className="h-100%" />}
       </div>
     </>
   );

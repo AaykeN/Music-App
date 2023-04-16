@@ -1,15 +1,13 @@
 import {
   useGetNewMusicQuery,
-  useGetPlaylistQuery,
   useGetPopularMusicQuery,
 } from "../redux/services/service";
 import photo from "../assets/img/header_photo.png";
 import groupPhoto from "../assets/img/group-photo.png";
 import TopChart from "../components/TopChart";
-import { Link } from "react-router-dom";
 import NewRelease from "../components/NewRelease";
-import { HiHeart } from "react-icons/hi";
-import { useDispatch, useSelector } from "react-redux";
+import { BsFillHeartFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 const CurratedPlaylist = () => {
   return (
@@ -29,8 +27,8 @@ const CurratedPlaylist = () => {
 
           <div className="flex gap-3 justify-start text-center ">
             <img src={groupPhoto} alt="users" />
-            <div className="flex gap-2">
-              <HiHeart className="w-6 h-6" />
+            <div className="flex gap-2 items-center justify-center">
+              <BsFillHeartFill className="w-4 h-4" />
               <p>33k Likes</p>
             </div>
           </div>

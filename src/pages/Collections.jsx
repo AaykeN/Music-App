@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import MyCollection from "../components/MyCollection";
+import Likes from "./Likes";
+import MyCollectionsAndLikes from "./MyCollectionsAndLikes";
 
 const Collections = () => {
   const location = useLocation();
-  const [activeButton, setActiveButton] = useState("collection");
+  const [activeButton, setActiveButton] = useState("collections");
 
   useEffect(() => {
     if (location.pathname.includes("likes")) {
-      setActiveButton("likes");
+      setActiveButton("favourites");
     } else {
-      setActiveButton("collection");
+      setActiveButton("collections");
     }
   }, [location.pathname]);
   const handleButtonClick = (button) => {
@@ -22,9 +25,11 @@ const Collections = () => {
         <Link to="/collections">
           <button
             className={`hover:bg-[#FACD66] border-[#595b59] text-[#595b59] font-medium border-[1px] rounded-full px-[20px] py-[10px] ${
-              activeButton === "collection" ? "bg-[#FACD66] text-[#181818]" : ""
+              activeButton === "collections"
+                ? "bg-[#FACD66] text-[#181818]"
+                : ""
             }`}
-            onClick={() => handleButtonClick("collection")}
+            onClick={() => handleButtonClick("collections")}
           >
             My Collection
           </button>
@@ -32,17 +37,26 @@ const Collections = () => {
         <Link to="/collections/likes">
           <button
             className={`hover:bg-[#FACD66] border-[#595b59] text-[#595b59] border-[1px] font-medium rounded-full px-[20px] py-[10px] ${
-              activeButton === "likes" ? "bg-[#FACD66] text-[#181818]" : ""
+              activeButton === "favourites" ? "bg-[#FACD66] text-[#181818]" : ""
             }`}
-            onClick={() => handleButtonClick("likes")}
+            onClick={() => handleButtonClick("favourites")}
           >
             Likes
           </button>
         </Link>
       </div>
-      <Outlet />
+
+      <MyCollectionsAndLikes activeButton={activeButton} />
     </div>
   );
 };
 
 export default Collections;
+
+{
+  /* {activeButton === "collection" ? <MyCollection /> : <Likes />} */
+}
+
+{
+  /* <Outlet /> */
+}

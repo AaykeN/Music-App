@@ -25,7 +25,7 @@ const PlaylistCard = ({
 
   return (
     <Link to={`/playlist/${playlist.id}`} key={`playlist-${index}`}>
-      <div className="overflow-hidden cursor-pointer rounded-3xl relative group aspect-auto flex animate-slowfade md:mt-0 mb-[20px]">
+      <div className="overflow-hidden cursor-pointer rounded-3xl relative group transition-all aspect-auto flex animate-slowfade md:mt-0 mb-[20px]">
         <div className="rounded-lg z-10 cursor-pointer absolute from-black/90 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-20 text-white flex items-end">
           <div className="flex">
             <div className="p-4 text-xl">
@@ -34,6 +34,9 @@ const PlaylistCard = ({
               </h2>
               <p className="font-extralight text-sm mb-3">
                 {playlist.files?.length} Songs
+              </p>
+              <p className="text-sm hidden group-hover:block mb-3 group-hover:animate-slideup font-extralight">
+                2.3m Likes
               </p>
             </div>
           </div>
@@ -45,7 +48,7 @@ const PlaylistCard = ({
         />
 
         <div
-          className="absolute z-[11] right-4 bottom-4"
+          className="hidden absolute z-[11] right-4 bottom-4 group-hover:block animate-slideup"
           onClick={(e) => {
             e.preventDefault();
           }}

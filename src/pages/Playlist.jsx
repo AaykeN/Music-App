@@ -8,6 +8,7 @@ import LikeButton from "../components/Buttons/LikeButton";
 import AddCollectionBtn from "../components/Buttons/AddCollectionBtn";
 import PlayAllBtn from "../components/Buttons/PlayAllBtn";
 import PlaylistSongCard from "../components/Cards/PlaylistSongCard";
+import Loader from "../components/Loader";
 
 const findPlaylist = (playlistId) => {
   const { data, isFetching, error } = useGetPlaylistQuery();
@@ -86,6 +87,7 @@ const Playlist = () => {
               />
             );
           })}
+          {isFetching && <Loader className="h-100%" />}
         </div>
       </div>
     </>

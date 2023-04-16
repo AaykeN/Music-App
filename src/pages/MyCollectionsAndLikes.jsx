@@ -1,12 +1,14 @@
-import { useSelector } from "react-redux";
-import PlaylistCard from "../components/Cards/PlaylistCard";
 import Loader from "../components/Loader";
 import { useState } from "react";
+import PlaylistCard from "../components/Cards/PlaylistCard";
+import { useSelector } from "react-redux";
 
-const Likes = () => {
-  const { favourites, isFetching } = useSelector(
-    (state) => state.persisted.favourites
+const MyCollectionsAndLikes = ({ activeButton }) => {
+  const propertyName = activeButton;
+  const { [propertyName]: data, isFetching } = useSelector(
+    (state) => state.persisted[propertyName]
   );
+
   const [currentPlaylist, setCurrentPlaylist] = useState(null);
   const handlePlaylistClick = (playlist) => {
     if (playlist !== currentPlaylist) {
@@ -15,21 +17,22 @@ const Likes = () => {
   };
 
   return (
-    <>
-      {!favourites.length && (
+    <div key={activeButton}>
+      {!data.length && (
         <>
           <div className="min-h-[250px] flex justify-center items-center">
-            <h2 className="text-lg text-white">No Likes Yet</h2>
+            <h2 className="text-lg text-white">
+              No {data === "collections" ? "Collections" : "Likes"} Yet
+            </h2>
           </div>
         </>
       )}
 
       <div className="flex-1 sm:flex sm:flex-nowrap flex-wrap md:gap-[30px] gap-[20px]">
-        {favourites?.map((playlist, index) => (
+        {data?.map((playlist, index) => (
           <PlaylistCard
-            isPlaying={playlist === currentPlaylist}
+            isTargetPlaylist={playlist === currentPlaylist}
             onPlaylistClick={handlePlaylistClick}
-            favourites={favourites}
             playlist={playlist}
             index={index}
             key={`likesCard-${index}`}
@@ -37,8 +40,8 @@ const Likes = () => {
         ))}
         {isFetching && <Loader className="h-100%" />}
       </div>
-    </>
+    </div>
   );
 };
 
-export default Likes;
+export default MyCollectionsAndLikes;
