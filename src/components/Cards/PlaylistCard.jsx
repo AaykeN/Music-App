@@ -1,21 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PlayPauseBtn from "../Buttons/PlayPauseBtn";
 import { playPause, setActiveSong } from "../../redux/features/playerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { IoPlay, IoPause } from "react-icons/io5";
 
-const PlaylistCard = ({ playlist, index, favourites, collections }) => {
+const PlaylistCard = ({
+  playlist,
+  index,
+  onPlaylistClick,
+  isTargetPlaylist,
+}) => {
+  const { isPlaying } = useSelector((state) => state.persisted.player);
   const dispatch = useDispatch();
-
-  const { activeSong, isPlaying } = useSelector(
-    (state) => state.persisted.player
-  );
-
   const handlePlayClick = (song, i) => {
-    dispatch(setActiveSong({ song, data: playlist, i: 0 }));
+    dispatch(setActiveSong({ song, data: playlist.files, i }));
+    onPlaylistClick(playlist);
+    dispatch(playPause(true));
+  };
 
-    isPlaying ? dispatch(playPause(false)) : dispatch(playPause(true));
+  const handlePauseClick = () => {
+    onPlaylistClick(null);
+    dispatch(playPause(false));
   };
 
   return (
@@ -38,22 +43,22 @@ const PlaylistCard = ({ playlist, index, favourites, collections }) => {
           className="flex object-cover object-center group-hover:scale-110 transition duration-300 ease-in-out sm:w-[270px] aspect-square w-full"
           src={playlist.cover}
         />
+
         <div
           className="absolute z-[11] right-4 bottom-4"
           onClick={(e) => {
             e.preventDefault();
           }}
         >
-          <div
-            onClick={() => handlePlayClick(playlist.files[0], 0)}
-            className="p-2 transition-all rounded-full bg-[#FACD66] active:scale-90 box-shadow md:mx-0 mx-3 cursor-pointer"
-          >
-            {/* {isPlaying ? (
-              <IoPause color="#ffffff" />
+          <div className="p-2 transition-all rounded-full bg-[#FACD66] active:scale-90 box-shadow md:mx-0 mx-3 cursor-pointer">
+            {isTargetPlaylist && isPlaying ? (
+              <IoPause color="#ffffff" onClick={handlePauseClick} />
             ) : (
-              <IoPlay color="#ffffff" />
-              )} */}
-            <IoPlay color="#ffffff" />
+              <IoPlay
+                color="#ffffff"
+                onClick={() => handlePlayClick(playlist.files[0], 0)}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -62,11 +67,3 @@ const PlaylistCard = ({ playlist, index, favourites, collections }) => {
 };
 
 export default PlaylistCard;
-
-{
-  /* <PlayPauseBtn
-            className=""
-            isPlaying={isPlaying}
-            handlePlay={handlePlayClick}
-          /> */
-}

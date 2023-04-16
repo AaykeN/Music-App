@@ -4,9 +4,9 @@ import {
   addFavourite,
   removeFavourite,
 } from "../../redux/features/favouriteSlice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const LikeButton = ({ playlist }) => {
+const LikeButton = ({ playlist, likeClass }) => {
   const { favourites } = useSelector((state) => state.persisted.favourites);
   const dispatch = useDispatch();
   const [liked, setLiked] = useState(() => {
@@ -28,17 +28,13 @@ const LikeButton = ({ playlist }) => {
 
   return (
     <>
-      {liked ? (
-        <BsFillHeartFill
-          className="text-[#ce4b4b]/[80%] w-5 h-5 pt-[2px] "
-          onClick={handleFavouriteToggle}
-        />
-      ) : (
-        <BsHeart
-          className="text-[#FACD66]/[80%] w-5 h-5 pt-[2px]"
-          onClick={handleFavouriteToggle}
-        />
-      )}
+      <button className={likeClass} onClick={handleFavouriteToggle}>
+        {liked ? (
+          <BsFillHeartFill className="text-[#ce4b4b]/[80%] w-5 h-5 pt-[2px] " />
+        ) : (
+          <BsHeart className="text-[#FACD66]/[80%] w-5 h-5 pt-[2px]" />
+        )}
+      </button>
     </>
   );
 };

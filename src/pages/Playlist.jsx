@@ -28,8 +28,6 @@ const Playlist = () => {
     dispatch(playPause(true));
   };
 
-  console.log(playlist);
-
   return (
     <>
       <div className="text-white text-xl px-7 py-7 pb-[130px]">
@@ -56,16 +54,15 @@ const Playlist = () => {
               </button>
               <AddCollectionBtn playlist={playlist} />
 
-              <button className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] lg:px-[10px] rounded-full text-start flex items-center gap-2 md:gap-3">
-                <LikeButton
-                  className="h-5 w-auto"
-                  alt="Like"
-                  playlist={playlist}
-                />
-                <p className="font-light text-xs md:text-sm lg:hidden block">
-                  Like
-                </p>
-              </button>
+              <LikeButton
+                likeClass="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] lg:px-[10px] rounded-full text-start flex items-center gap-2 md:gap-3"
+                className="h-5 w-auto"
+                alt="Like"
+                playlist={playlist}
+              />
+              <p className="font-light text-xs md:text-sm lg:hidden block">
+                Like
+              </p>
             </div>
           </div>
         </div>

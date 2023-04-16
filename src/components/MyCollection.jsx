@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import PlaylistCard from "./Cards/PlaylistCard";
-import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
 const MyCollection = () => {
   const { collections } = useSelector((state) => state.persisted.collections);
+
+  const [currentPlaylist, setCurrentPlaylist] = useState(null);
+  console.log(currentPlaylist);
+  const handlePlaylistClick = (playlist) => {
+    if (playlist !== currentPlaylist) {
+      setCurrentPlaylist(playlist);
+    }
+  };
 
   return (
     <>
@@ -19,6 +26,8 @@ const MyCollection = () => {
         {collections?.map((playlist, index) => {
           return (
             <PlaylistCard
+              isTargetPlaylist={playlist === currentPlaylist}
+              onPlaylistClick={handlePlaylistClick}
               collections={collections}
               playlist={playlist}
               index={index}

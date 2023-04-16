@@ -55,12 +55,10 @@ const TopChart = () => {
                 <p className="text-base text-gray-300 md:mt-1 mt-7">12:24</p>
               </div>
             </div>
-            <button
-              className=" p-3 border-[1px] rounded-full border-gray-500/[50%] transition-all active:scale-125 flex items-center z-[11]"
-              onClick={(e) => e.preventDefault()}
-            >
-              <LikeButton playlist={playlist} />
-            </button>
+            <LikeButton
+              playlist={playlist}
+              likeClass="p-3 border-[1px] rounded-full border-gray-500/[50%] transition-all active:scale-125 flex items-center z-[11]"
+            />
           </div>
         </div>
       </Link>
