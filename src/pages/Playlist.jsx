@@ -16,6 +16,20 @@ const findPlaylist = (playlistId) => {
   return { playlist, isFetching, error, data };
 };
 
+export const calculateTotalTime = (playListSongs) => {
+  let totalSeconds = 0;
+  for (let i = 0; i < playListSongs?.length; i++) {
+    const durationParts = playListSongs[i].duration.split(":");
+    const minutes = parseInt(durationParts[0]);
+    const seconds = parseInt(durationParts[1]);
+    totalSeconds += minutes * 60 + seconds;
+  }
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  const totalTime = { minutes: minutes, seconds: seconds };
+  return totalTime;
+};
+
 const Playlist = () => {
   const dispatch = useDispatch();
   const { playlistId } = useParams();
@@ -28,6 +42,8 @@ const Playlist = () => {
     dispatch(setActiveSong({ song, data: playlist.files, i }));
     dispatch(playPause(true));
   };
+
+  const totalTime = calculateTotalTime(playListSongs);
 
   return (
     <>
@@ -44,7 +60,10 @@ const Playlist = () => {
             </h2>
             <div className="text-base text-white/90 font-light lg:max-w-[700px]">
               <p className="mb-3">{playlist?.info}</p>
-              <p>{playListSongs?.length} Songs ~ 16 hrs+</p>
+              <p>
+                {playListSongs?.length} Songs ~ {totalTime.minutes} mins{" "}
+                {totalTime.seconds} secs
+              </p>
             </div>
             <div className="flex gap-4 mt-5 lg:mt-14 flex-wrap md:flex-nowrap">
               <button
@@ -81,13 +100,13 @@ const Playlist = () => {
               <PlaylistSongCard
                 isActiveSong={isActiveSong}
                 handlePlayClick={() => handlePlayClick(song, i)}
-                // handlePlayClick={handlePlayClick}
                 song={song}
                 key={`PlaylistSongCard-${i}`}
               />
             );
           })}
           {isFetching && <Loader className="h-100%" />}
+          {/* {playListSongs.length === 0 && <h1>Error</h1>} */}
         </div>
       </div>
     </>

@@ -12,7 +12,7 @@ const PlaylistSongCard = ({ isActiveSong, handlePlayClick, song }) => {
         <img
           src={song.cover}
           alt="art cover"
-          className="w-14 h-auto rounded-lg object-cover"
+          className="w-12 h-auto rounded-xl object-cover aspect-square"
         />
         <div className="md:ml-3 lg:ml-5 hidden md:block">
           <HiOutlineHeart className="w-6 h-auto text-white" />

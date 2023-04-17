@@ -3,6 +3,7 @@ import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useGetPlaylistQuery } from "../redux/services/service";
 import { useDispatch, useSelector } from "react-redux";
+import { calculateTotalTime } from "../pages/Playlist";
 import {
   addFavourite,
   removeFavourite,
@@ -34,6 +35,9 @@ const TopChart = () => {
   const dispatch = useDispatch();
 
   const topChartCard = data?.slice(0, 3).map((playlist, index) => {
+    const playListSongs = playlist?.files;
+    const totalTime = calculateTotalTime(playListSongs);
+
     return (
       <Link to={`/playlist/${playlist?.id}`} key={playlist.id} className="">
         <div className="md:w-full min-w-[400px] flex flex-row items-center bg-[#1A1E1F] rounded-3xl md:p-5 sm:p-4 p-3 cursor-pointer mb-4 hover:bg-[#121414a5]">
@@ -52,7 +56,9 @@ const TopChart = () => {
                 <p className="text-sm text-gray-300 mt-1 text-opacity-50">
                   {playlist.info.replace(/^(.{40}[^\s]*).*/, "$1")}...
                 </p>
-                <p className="text-base text-gray-300 md:mt-1 mt-7">12:24</p>
+                <p className="text-base text-gray-300 md:mt-1 mt-7">
+                  {totalTime.minutes}:{totalTime.seconds}
+                </p>
               </div>
             </div>
             <LikeButton
