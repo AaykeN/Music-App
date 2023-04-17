@@ -15,7 +15,7 @@ const CurratedPlaylist = () => {
       <div className=" flex h-[100%] gap-8">
         {/* Info */}
         <div className="flex-1 text-white flex flex-col justify-between p-10">
-          <h4 className="text-lg font-normal">Currated Playlist</h4>
+          <h4 className="text-base font-normal">Currated Playlist</h4>
 
           <div className="max-w-sm">
             <h1 className="text-4xl font-bold mb-2">R & B Hits</h1>

@@ -1,15 +1,13 @@
 import { useDispatch } from "react-redux";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
-import {
-  useGetNewMusicQuery,
-  useGetPopularMusicQuery,
-} from "../redux/services/service";
+import { useGetNewMusicQuery } from "../redux/services/service";
 import PlayPause from "./PlayPause";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
+import Loader from "./Loader";
+import SubHeading from "./SubHeading";
 import "swiper/css";
 import "swiper/css/free-mode";
-import Loader from "./Loader";
 
 const NewRelease = ({ useQueryHook, isPlaying, activeSong }) => {
   const { data, isFetching, error } = useQueryHook();
@@ -62,11 +60,14 @@ const NewRelease = ({ useQueryHook, isPlaying, activeSong }) => {
 
   return (
     <div className="w-full mt-10 ">
-      <h2 className="text-2xl font-bold mb-2 text-white">
-        {useQueryHook === useGetNewMusicQuery
-          ? "New Releases"
-          : "Popular In Your Area"}
-      </h2>
+      <SubHeading
+        text={
+          useQueryHook === useGetNewMusicQuery
+            ? "New Releases"
+            : "Popular In Your Area"
+        }
+      />
+
       <Swiper
         slidesPerView="auto"
         spaceBetween={35}

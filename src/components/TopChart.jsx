@@ -1,14 +1,9 @@
-import React, { useState } from "react";
-import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useGetPlaylistQuery } from "../redux/services/service";
 import { useDispatch, useSelector } from "react-redux";
 import { calculateTotalTime } from "../pages/Playlist";
-import {
-  addFavourite,
-  removeFavourite,
-} from "../redux/features/favouriteSlice";
 import LikeButton from "./Buttons/LikeButton";
+import SubHeading from "./SubHeading";
 
 const PlaylistCardSkeleton = () => (
   <div className="md:w-full min-w-[400px] flex flex-row items-center bg-[#1A1E1F] rounded-3xl md:p-5 sm:p-4 p-3 cursor-pointer mb-4 animate-pulse">
@@ -73,7 +68,7 @@ const TopChart = () => {
 
   return (
     <div className="md:w-[100%] lg:w-[40%] w-100%">
-      <h2 className="text-2xl font-bold text-white mb-4">Top Chart</h2>
+      <SubHeading text="Top Chart" />
       <div className="md:block flex lg:overflow-y-auto overflow-x-scroll hide-scrollbar md:h-[420px] h-[320px] md:gap-0 gap-7">
         {isFetching ? <PlaylistCardSkeleton /> : topChartCard}
       </div>

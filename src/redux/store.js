@@ -2,6 +2,7 @@ import { musicApi } from "./services/service";
 import { configureStore } from "@reduxjs/toolkit";
 import playerReducer from "./features/playerSlice";
 import favouriteReducer from "./features/favouriteSlice";
+import favouriteSongReducer from "./features/favouriteSlice";
 import collectionReducer from "./features/collectionSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
@@ -15,6 +16,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   favourites: favouriteReducer,
+  // favouritesSong: favouriteSongReducer,
   collections: collectionReducer,
   player: playerReducer,
 });

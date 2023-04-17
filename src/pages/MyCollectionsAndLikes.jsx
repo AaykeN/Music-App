@@ -1,10 +1,15 @@
 import Loader from "../components/Loader";
 import { useState } from "react";
 import PlaylistCard from "../components/Cards/PlaylistCard";
-import { useSelector } from "react-redux";
+import { setActiveSong, playPause } from "../redux/features/playerSlice";
+import { useDispatch, useSelector } from "react-redux";
+import PlaylistSongCard from "../components/Cards/PlaylistSongCard";
+import SubHeading from "../components/SubHeading";
 
 const MyCollectionsAndLikes = ({ activeButton }) => {
   const propertyName = activeButton;
+  const dispatch = useDispatch();
+  const { favouritesSong } = useSelector((state) => state.persisted.favourites);
   const { [propertyName]: data, isFetching } = useSelector(
     (state) => state.persisted[propertyName]
   );
@@ -28,7 +33,7 @@ const MyCollectionsAndLikes = ({ activeButton }) => {
         </>
       )}
 
-      <div className="flex-1 sm:flex sm:flex-nowrap flex-wrap md:gap-[30px] gap-[20px]">
+      <div className="flex-1 sm:flex sm:flex-nowrap flex-wrap md:gap-[30px] gap-[20px] mb-16">
         {data?.map((playlist, index) => (
           <PlaylistCard
             isTargetPlaylist={playlist === currentPlaylist}
@@ -40,6 +45,30 @@ const MyCollectionsAndLikes = ({ activeButton }) => {
         ))}
         {isFetching && <Loader className="h-100%" />}
       </div>
+
+      {activeButton === "favourites" ? (
+        <>
+          <SubHeading text="Liked Songs" />
+          <div className="flex flex-col gap-3 text-white">
+            {favouritesSong?.map((song, i) => {
+              const handlePlayClick = () => {
+                dispatch(setActiveSong({ song, data: favouritesSong, i }));
+                dispatch(playPause(true));
+              };
+
+              return (
+                <PlaylistSongCard
+                  handlePlayClick={() => handlePlayClick(song, i)}
+                  song={song}
+                  key={`PlaylistSongCard-${i}`}
+                />
+              );
+            })}
+          </div>
+        </>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

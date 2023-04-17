@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setActiveSong, playPause } from "../redux/features/playerSlice";
 import { useGetPlaylistQuery } from "../redux/services/service";
-
 import LikeButton from "../components/Buttons/LikeButton";
 import AddCollectionBtn from "../components/Buttons/AddCollectionBtn";
 import PlayAllBtn from "../components/Buttons/PlayAllBtn";
@@ -34,9 +33,6 @@ const Playlist = () => {
   const dispatch = useDispatch();
   const { playlistId } = useParams();
   const { playlist, isFetching, error, data } = findPlaylist(playlistId);
-  const { activeSong, isPlaying } = useSelector(
-    (state) => state.persisted.player
-  );
   const playListSongs = playlist?.files;
   const handlePlayClick = (song, i) => {
     dispatch(setActiveSong({ song, data: playlist.files, i }));
@@ -94,11 +90,8 @@ const Playlist = () => {
               dispatch(playPause(true));
             };
 
-            // Check if this song is active
-            const isActiveSong = activeSong && activeSong.id === song.id;
             return (
               <PlaylistSongCard
-                isActiveSong={isActiveSong}
                 handlePlayClick={() => handlePlayClick(song, i)}
                 song={song}
                 key={`PlaylistSongCard-${i}`}
@@ -106,7 +99,6 @@ const Playlist = () => {
             );
           })}
           {isFetching && <Loader className="h-100%" />}
-          {/* {playListSongs.length === 0 && <h1>Error</h1>} */}
         </div>
       </div>
     </>
