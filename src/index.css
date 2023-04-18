@@ -63,8 +63,8 @@ body {
 } */
 
 .container-padding {
-  padding-top: 2.5rem /* 40px */;
-  padding-bottom: 2.5rem /* 40px */;
+  padding-top: 1.5rem /* 40px */;
+  padding-bottom: 130px /* 40px */;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

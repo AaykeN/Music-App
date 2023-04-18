@@ -73,7 +73,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="md:flex hidden flex-col items-center w-[120px] py-7 px-5 h-screen sticky top-0 z-10">
+      <div className="md:flex hidden flex-col items-center w-[120px] py-5 px-5 h-screen sticky top-0 z-10">
         <Link to="/">
           <img
             src={logo}
@@ -85,18 +85,27 @@ const Sidebar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className="md:hidden fixed top-6 left-[25px] z-30">
+      <div className="md:hidden fixed top-6 left-[25px] z-30 flex">
         {mobileMenuOpen ? (
           <RiCloseLine
             className="w-6 h-6 text-white"
             onClick={() => setMobileMenuOpen(false)}
           />
         ) : (
-          <HiMenuAlt4
-            className="w-6 h-6 text-white"
-            onClick={() => setMobileMenuOpen(true)}
-          />
+          <div>
+            <HiMenuAlt4
+              className="w-6 h-6 text-white"
+              onClick={() => setMobileMenuOpen(true)}
+            />
+          </div>
         )}
+        <Link to="/">
+          <img
+            src={logo}
+            alt="logo"
+            className="w-[25px] h-[25px] object-contain cursor-pointer ml-5"
+          />
+        </Link>
       </div>
 
       <div

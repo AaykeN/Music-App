@@ -6,6 +6,8 @@ import { BiSearch } from "react-icons/bi";
 import { setActiveSong, playPause } from "../redux/features/playerSlice";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import logo from "../assets/img/logo.svg";
 
 const Searchbar = () => {
   const dispatch = useDispatch();
@@ -75,19 +77,27 @@ const Searchbar = () => {
   }
 
   return (
-    <div className="relative flex md:justify-start justify-end">
+    <div className="relative flex md:justify-start justify-end h-fit w-[60%] md:w-[40%]">
+      {/* <Link to="/">
+        <img
+          src={logo}
+          alt="logo"
+          className="w-[34px] h-[34px] object-contain cursor-pointer"
+        />
+      </Link> */}
+
       <input
         ref={inputRef}
         type="text"
         value={searchTerm}
         onChange={handleSearchTermChange}
         placeholder="Search artists"
-        className="bg-transparent md:pl-12 mr-12 py-1 focus:outline-none text-white w-[60%] md:w-[40%] md:text-start text-end"
+        className="bg-transparent md:pl-12 mr-12 md:mr-0 py-1 focus:outline-none text-white w-full md:text-start text-end"
       />
       {showSuggestions && searchTerm && filteredSuggestions.length > 0 && (
         <ul
           id="style-1"
-          className="absolute right-3 md:left-3 z-10 bg-[#1A1E1F] top-9 shadow-md overflow-y-auto max-h-60 w-[60%] md:w-[30%] rounded-lg"
+          className="absolute right-3 md:left-3 z-10 bg-[#1A1E1F] top-9 shadow-md overflow-y-auto max-h-60 w-[100%] rounded-lg"
         >
           {filteredSuggestions?.map((song, i) => {
             const handlePlayClick = () => {

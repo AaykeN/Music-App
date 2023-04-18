@@ -57,6 +57,7 @@ const TopChart = () => {
               </div>
             </div>
             <LikeButton
+              topChart="topChart"
               playlist={playlist}
               likeClass="p-3 border-[1px] rounded-full border-gray-500/[50%] transition-all active:scale-125 flex items-center z-[11]"
             />
