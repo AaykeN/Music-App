@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { useGetPlaylistQuery } from "../redux/services/service";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { calculateTotalTime } from "../pages/Playlist";
-import LikeButton from "./Buttons/LikeButton";
+import { useGetPlaylistQuery } from "../redux/services/service";
 import SubHeading from "./SubHeading";
+import LikeButton from "./Buttons/LikeButton";
 
 const PlaylistCardSkeleton = () => (
   <div className="md:w-full min-w-[400px] flex flex-row items-center bg-[#1A1E1F] rounded-3xl md:p-5 sm:p-4 p-3 cursor-pointer mb-4 animate-pulse">
@@ -77,10 +77,3 @@ const TopChart = () => {
 };
 
 export default TopChart;
-{
-  /* {isFetching ? (
-          <div className="md:w-full min-w-[400px]  flex flex-row items-center dark:bg-gray-700 animate-pulse rounded-3xl md:p-5 sm:p-4 p-3 cursor-pointer mb-4"></div>
-        ) : (
-          playListCard
-        )} */
-}

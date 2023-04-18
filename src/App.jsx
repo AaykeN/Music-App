@@ -38,7 +38,7 @@ function App() {
               <Route path="/radio" element={<Radio />} />
               <Route path="/videos" element={<Videos />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/logout" element={<Logout />} />
+              <Route path="/" element={<Logout />} />
             </Routes>
           </div>
         </div>

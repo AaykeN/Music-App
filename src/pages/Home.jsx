@@ -53,7 +53,7 @@ const Home = () => {
   );
 
   return (
-    <div className="px-7 py-7 pb-[130px]">
+    <div className="px-7 py-10 pb-[130px]">
       <section className="flex flex-col lg:flex-row gap-10 flex-1 ">
         <CurratedPlaylist />
         <TopChart />

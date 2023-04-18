@@ -1,6 +1,5 @@
-import { playListButton } from "../assets/constants";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setActiveSong, playPause } from "../redux/features/playerSlice";
 import { useGetPlaylistQuery } from "../redux/services/service";
 import LikeButton from "../components/Buttons/LikeButton";
@@ -43,7 +42,7 @@ const Playlist = () => {
 
   return (
     <>
-      <div className="text-white text-xl px-7 py-7 pb-[130px]">
+      <div className="text-white text-xl px-7 pb-[130px] container-padding ">
         <div className="lg:flex lg:gap-8 lg:items-end">
           <img
             src={playlist?.cover}
@@ -62,12 +61,10 @@ const Playlist = () => {
               </p>
             </div>
             <div className="flex gap-4 mt-5 lg:mt-14 flex-wrap md:flex-nowrap">
-              <button
-                className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] rounded-full text-start flex items-center gap-2 md:gap-3"
-                onClick={() => handlePlayClick(playlist.files[0], 0)}
-              >
-                <PlayAllBtn />
-              </button>
+              <PlayAllBtn
+                handleClick={() => handlePlayClick(playlist.files[0], 0)}
+                playALlClass="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] rounded-full text-start flex items-center gap-2 md:gap-3"
+              />
               <AddCollectionBtn playlist={playlist} />
 
               <LikeButton
@@ -76,9 +73,6 @@ const Playlist = () => {
                 alt="Like"
                 playlist={playlist}
               />
-              <p className="font-light text-xs md:text-sm lg:hidden block">
-                Like
-              </p>
             </div>
           </div>
         </div>

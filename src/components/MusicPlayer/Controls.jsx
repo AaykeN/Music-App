@@ -28,7 +28,7 @@ const Controls = ({
           ? "cursor-pointer fill-[#ffffff]"
           : "fill-[#ffffffae]"
       }`}
-      nClick={currentSongs?.length > 1 ? handlePrevSong : null}
+      onClick={currentSongs?.length > 1 ? handlePrevSong : null}
     />
     <PlayPauseBtn isPlaying={isPlaying} handlePlayPause={handlePlayPause} />
     <Next

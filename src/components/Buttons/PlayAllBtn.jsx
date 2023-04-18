@@ -1,30 +1,14 @@
 import { ReactComponent as PlayAll } from "../../assets/img/playAll.svg";
 
-const PlayAllBtn = () => {
-  //   const { favourites } = useSelector((state) => state.favourites);
-  //   const dispatch = useDispatch();
-  //   const [liked, setLiked] = useState(() => {
-  //     const isFavouritePlaylist = favourites.some(
-  //       (favourite) => favourite.id === playlist.id
-  //     );
-  //     return !!isFavouritePlaylist;
-  //   });
-
-  //   const handleFavouriteToggle = (e) => {
-  //     e.preventDefault();
-  //     if (liked) {
-  //       dispatch(removeFavourite(playlist.id));
-  //     } else {
-  //       dispatch(addFavourite(playlist));
-  //     }
-  //     setLiked(!liked);
-  //   };
-
+const PlayAllBtn = ({ handleClick }) => {
   return (
-    <>
+    <button
+      className="bg-[#33373B]/[37%] hover:bg-[#2e323440] w-fit py-[10px] md:px-[20px] px-[15px] rounded-full text-start flex items-center gap-2 md:gap-3"
+      onClick={handleClick}
+    >
       <PlayAll className="h-5 w-auto" alt="Add to Collection" />
       <p className="font-light text-xs md:text-sm">Play All</p>
-    </>
+    </button>
   );
 };
 

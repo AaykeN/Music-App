@@ -1,15 +1,36 @@
-import { BiSearch } from "react-icons/bi";
-import React, { useEffect, useRef, useState } from "react";
-import { setActiveSong, playPause } from "../redux/features/playerSlice";
 import {
   useGetNewMusicQuery,
   useGetPopularMusicQuery,
 } from "../redux/services/service";
+import { BiSearch } from "react-icons/bi";
+import { setActiveSong, playPause } from "../redux/features/playerSlice";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 const Searchbar = () => {
   const dispatch = useDispatch();
-  const [showSuggestions, setShowSuggestions] = useState(false); // Add state for showing/hiding suggestions
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const inputRef = useRef(null);
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+
+  const handleSearchTermChange = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+  };
+
+  const handleDocumentClick = (event) => {
+    if (inputRef.current && !inputRef.current.contains(event.target)) {
+      setShowSuggestions(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
 
   const {
     data: newMusicData,
@@ -22,17 +43,11 @@ const Searchbar = () => {
     error: popularMusicError,
   } = useGetPopularMusicQuery();
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const inputRef = useRef(null);
-  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-
   useEffect(() => {
     if (newMusicData && popularMusicData) {
-      // Concatenate the data from both endpoints
       const allData = [...newMusicData, ...popularMusicData];
       const keywords = searchTerm.toLowerCase().split(" ");
       const filtered = allData.filter((item) => {
-        // Use the concatenated data to filter the suggestions
         for (const keyword of keywords) {
           if (
             !item.title.toLowerCase().includes(keyword) &&
@@ -44,23 +59,11 @@ const Searchbar = () => {
         return true;
       });
       setFilteredSuggestions(filtered);
-      setShowSuggestions(true); // Show suggestions when filtered suggestions are available
+      setShowSuggestions(true);
     } else {
-      setShowSuggestions(false); // Hide suggestions when there are no filtered suggestions
-    }
-  }, [newMusicData, popularMusicData, searchTerm]);
-
-  const handleSearchTermChange = (event) => {
-    const value = event.target.value;
-    setSearchTerm(value);
-  };
-
-  const handleDocumentClick = (event) => {
-    if (inputRef.current && !inputRef.current.contains(event.target)) {
-      // Hide suggestions if click target is outside the ul element
       setShowSuggestions(false);
     }
-  };
+  }, [newMusicData, popularMusicData, searchTerm]);
 
   if (newMusicFetching || popularMusicFetching) {
     return <div>Loading...</div>;
@@ -71,27 +74,20 @@ const Searchbar = () => {
     );
   }
 
-  useEffect(() => {
-    document.addEventListener("click", handleDocumentClick);
-    return () => {
-      document.removeEventListener("click", handleDocumentClick);
-    };
-  }, []); // Add event listener on mount and remove on unmount
-
   return (
-    <div className="relative">
+    <div className="relative flex md:justify-start justify-end">
       <input
         ref={inputRef}
         type="text"
         value={searchTerm}
         onChange={handleSearchTermChange}
         placeholder="Search artists"
-        className="bg-transparent pl-12 py-1 focus:outline-none text-white w-[40%]"
+        className="bg-transparent md:pl-12 mr-12 py-1 focus:outline-none text-white w-[60%] md:w-[40%] md:text-start text-end"
       />
       {showSuggestions && searchTerm && filteredSuggestions.length > 0 && (
         <ul
           id="style-1"
-          className="absolute left-3 right-0 z-10 bg-[#1A1E1F] top-9 shadow-md overflow-y-auto max-h-60 w-[30%] rounded-lg"
+          className="absolute right-3 md:left-3 z-10 bg-[#1A1E1F] top-9 shadow-md overflow-y-auto max-h-60 w-[60%] md:w-[30%] rounded-lg"
         >
           {filteredSuggestions?.map((song, i) => {
             const handlePlayClick = () => {
@@ -112,7 +108,7 @@ const Searchbar = () => {
           })}
         </ul>
       )}
-      <div className="absolute left-0 top-0 bottom-0 flex items-center pl-3">
+      <div className="absolute right:right-0 md:left-0 top-0 bottom-0 flex items-center pl-3">
         <BiSearch className="fill-white/[25%] w-5 h-auto" />
       </div>
     </div>

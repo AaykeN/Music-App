@@ -11,7 +11,7 @@ import { ReactComponent as Home } from "../assets/img/Home-1.svg";
 const NavLinks = ({ handleClick, mobileMenuOpen }) => {
   return (
     <>
-      <div className="flex flex-col w-[60px] bg-[#1A1E1F] rounded-full gap-[30px] py-6 px-4 mt-[30px]">
+      <div className="flex flex-col w-[60px] bg-[#1A1E1F] rounded-full gap-[30px] py-6 px-4 mt-[42px]">
         {links.slice(0, 4).map((item) => {
           const Icon = item.icon;
 

@@ -27,7 +27,11 @@ const MyCollectionsAndLikes = ({ activeButton }) => {
         <>
           <div className="min-h-[250px] flex justify-center items-center">
             <h2 className="text-lg text-white">
-              No {data === "collections" ? "Collections" : "Likes"} Yet
+              No{" "}
+              {activeButton === "collections"
+                ? "Collections"
+                : "Liked Playlist"}{" "}
+              Yet
             </h2>
           </div>
         </>
@@ -46,7 +50,7 @@ const MyCollectionsAndLikes = ({ activeButton }) => {
         {isFetching && <Loader className="h-100%" />}
       </div>
 
-      {activeButton === "favourites" ? (
+      {activeButton === "favourites" && favouritesSong.length >= 1 ? (
         <>
           <SubHeading text="Liked Songs" />
           <div className="flex flex-col gap-3 text-white">

@@ -27,15 +27,14 @@ const LikeButton = ({ playlist, likeClass }) => {
   };
 
   return (
-    <>
-      <button className={likeClass} onClick={handleFavouriteToggle}>
-        {liked ? (
-          <BsFillHeartFill className="text-[#ce4b4b]/[80%] w-5 h-5 pt-[2px] " />
-        ) : (
-          <BsHeart className="text-[#FACD66]/[80%] w-5 h-5 pt-[2px]" />
-        )}
-      </button>
-    </>
+    <button className={likeClass} onClick={handleFavouriteToggle}>
+      {liked ? (
+        <BsFillHeartFill className="text-[#ce4b4b]/[80%] w-5 h-5 pt-[2px] " />
+      ) : (
+        <BsHeart className="text-[#FACD66]/[80%] w-5 h-5 pt-[2px]" />
+      )}
+      <p className="font-light text-xs md:text-sm lg:hidden block">Like</p>
+    </button>
   );
 };
 

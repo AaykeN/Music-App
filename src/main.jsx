@@ -10,7 +10,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 
 let persistor = persistStore(store);
-// persistor.purge(["favouritesSong"]);
+// persistor.purge([]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

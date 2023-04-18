@@ -20,7 +20,7 @@ const Collections = () => {
   };
 
   return (
-    <div className="text-md px-7 py-7 pb-[130px]">
+    <div className="text-md px-7 container-padding pb-[130px]">
       <div className="flex gap-3 mb-6">
         <Link to="/collections">
           <button

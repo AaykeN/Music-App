@@ -7,6 +7,7 @@ import {
   addSongToFavorite,
   removeSongFromFavorite,
 } from "../../redux/features/favouriteSlice";
+import PopoverBtn from "../PopoverBtn";
 
 const PlaylistSongCard = ({ handlePlayClick, song }) => {
   const { favouritesSong } = useSelector((state) => state.persisted.favourites);
@@ -82,7 +83,10 @@ const PlaylistSongCard = ({ handlePlayClick, song }) => {
             </p>
           </div>
           <div className="flex-1 flex flex-shrink-5 justify-end items-center">
-            <HiDotsVertical className="lg:mr-6 text-[#FACD66]" />
+            <PopoverBtn
+              handleFavouriteToggle={handleFavouriteToggle}
+              likedSong={likedSong}
+            />
           </div>
         </div>
       </div>

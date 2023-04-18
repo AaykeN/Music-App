@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { ReactComponent as PlayAll } from "../../assets/img/playAll.svg";
 import { ReactComponent as AddCollection } from "../../assets/img/music-square-add.svg";
 import { useDispatch, useSelector } from "react-redux";
 import {
