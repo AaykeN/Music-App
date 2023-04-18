@@ -35,7 +35,7 @@ const TopChart = () => {
 
     return (
       <Link to={`/playlist/${playlist?.id}`} key={playlist.id} className="">
-        <div className="md:w-full min-w-[400px] flex flex-row items-center bg-[#1A1E1F] rounded-3xl md:p-5 sm:p-4 p-3 cursor-pointer mb-4 hover:bg-[#121414a5]">
+        <div className="md:w-full min-w-[400px] lg:min-w-[250px] xl:min-w-[400px] flex flex-row items-center bg-[#1A1E1F] rounded-3xl md:p-5 py-4 pl-2 pr-3  cursor-pointer mb-4 hover:bg-[#121414a5]">
           <div className="flex-1 flex lg:flex-row justify-between md:items-center items-start ">
             <div className="lg:flex ">
               <div className="mx-3 lg:mx-0 mb-3 lg:mb-0">
@@ -48,7 +48,7 @@ const TopChart = () => {
                 <p className="text-xl font-normal text-white">
                   {playlist.title}
                 </p>
-                <p className="text-sm text-gray-300 mt-1 text-opacity-50">
+                <p className="text-sm text-gray-300 mt-1 text-opacity-50 lg:hidden xl:block ">
                   {playlist.info.replace(/^(.{40}[^\s]*).*/, "$1")}...
                 </p>
                 <p className="text-base text-gray-300 md:mt-1 mt-7">

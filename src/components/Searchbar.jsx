@@ -6,8 +6,6 @@ import { BiSearch } from "react-icons/bi";
 import { setActiveSong, playPause } from "../redux/features/playerSlice";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import logo from "../assets/img/logo.svg";
 
 const Searchbar = () => {
   const dispatch = useDispatch();
@@ -78,14 +76,6 @@ const Searchbar = () => {
 
   return (
     <div className="relative flex md:justify-start justify-end h-fit w-[60%] md:w-[40%]">
-      {/* <Link to="/">
-        <img
-          src={logo}
-          alt="logo"
-          className="w-[34px] h-[34px] object-contain cursor-pointer"
-        />
-      </Link> */}
-
       <input
         ref={inputRef}
         type="text"
