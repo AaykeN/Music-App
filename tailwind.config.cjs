@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         black: "#191624",
       },
+      screens: {
+        xs: "450px",
+      },
       animation: {
         slideup: "slideup 0.4s ease-in-out",
         slidedown: "slidedown 1s ease-in-out",
