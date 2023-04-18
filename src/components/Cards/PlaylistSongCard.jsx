@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiDotsVertical } from "react-icons/hi";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,13 +20,15 @@ const PlaylistSongCard = ({ handlePlayClick, song }) => {
     activeSong.artist === song.artist;
 
   const dispatch = useDispatch();
-  const [likedSong, setLikedSong] = useState(() => {
-    const isFavouriteSong = favouritesSong.some(
+  const [likedSong, setLikedSong] = useState(false);
+
+  useEffect(() => {
+    const isFavouriteSong = favouritesSong.find(
       (favourite) =>
         favourite.title === song?.title && favourite.artist === song?.artist
     );
-    return !!isFavouriteSong;
-  });
+    setLikedSong(!!isFavouriteSong);
+  }, [favouritesSong]);
 
   const handleFavouriteToggle = (e) => {
     e.preventDefault();
@@ -38,6 +40,8 @@ const PlaylistSongCard = ({ handlePlayClick, song }) => {
     }
     setLikedSong(!likedSong);
   };
+
+  console.log(favouritesSong);
 
   return (
     <div
