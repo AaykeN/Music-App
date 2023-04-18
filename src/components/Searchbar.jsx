@@ -84,30 +84,36 @@ const Searchbar = () => {
         placeholder="Search artists"
         className="bg-transparent md:pl-12 mr-12 md:mr-0 py-1 focus:outline-none text-white w-full md:text-start text-end"
       />
-      {showSuggestions && searchTerm && filteredSuggestions.length > 0 && (
-        <ul
-          id="style-1"
-          className="absolute right-3 md:left-3 z-10 bg-[#1A1E1F] top-9 shadow-md overflow-y-auto max-h-60 w-[100%] rounded-lg"
-        >
-          {filteredSuggestions?.map((song, i) => {
-            const handlePlayClick = () => {
-              dispatch(setActiveSong({ song, data: song, i }));
-              dispatch(playPause(true));
-              setShowSuggestions(false);
-            };
+      {showSuggestions &&
+        searchTerm &&
+        (filteredSuggestions.length > 0 ? (
+          <ul
+            id="style-1"
+            className="absolute right-3 md:left-3 z-10 bg-[#1A1E1F] top-9 shadow-md overflow-y-auto max-h-60 w-[100%] rounded-lg"
+          >
+            {filteredSuggestions?.map((song, i) => {
+              const handlePlayClick = () => {
+                dispatch(setActiveSong({ song, data: song, i }));
+                dispatch(playPause(true));
+                setShowSuggestions(false);
+              };
 
-            return (
-              <li
-                key={song.id}
-                className="px-4 py-4 cursor-pointer text-white hover:text-[#FACD66]"
-                onClick={() => handlePlayClick(song, i)}
-              >
-                {song.title} - {song.artist}
-              </li>
-            );
-          })}
-        </ul>
-      )}
+              return (
+                <li
+                  key={song.id}
+                  className="px-4 py-4 cursor-pointer text-white hover:text-[#FACD66]"
+                  onClick={() => handlePlayClick(song, i)}
+                >
+                  {song.title} - {song.artist}
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <p className="absolute right-3 md:left-3 z-10 bg-[#1A1E1F] top-9 shadow-md p-4 w-[100%] rounded-lg text-slate-300">
+            No results found
+          </p>
+        ))}
       <div className="absolute right:right-0 md:left-0 top-0 bottom-0 flex items-center pl-3">
         <BiSearch className="fill-white/[25%] w-5 h-auto" />
       </div>
