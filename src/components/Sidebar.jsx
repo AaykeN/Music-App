@@ -109,7 +109,7 @@ const Sidebar = () => {
       </div>
 
       <div
-        className={`fixed md:hidden flex-col items-center w-2/3 py-7 px-5 h-screen top-[65px] z-10 bg-[#1d2123] smooth-transition ${
+        className={`fixed md:hidden flex-col items-center w-2/3 py-7 px-5 h-screen top-[65px] z-30 bg-[#1d2123] smooth-transition ${
           mobileMenuOpen ? "left-0" : "-left-full"
         }`}
       >

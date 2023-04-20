@@ -41,12 +41,10 @@ const PlaylistSongCard = ({ handlePlayClick, song }) => {
     setLikedSong(!likedSong);
   };
 
-  console.log(favouritesSong);
-
   return (
     <div
       onClick={handlePlayClick}
-      className={`bg-[#33373B]/[37%] hover:bg-[#2e323440] cursor-pointer rounded-2xl flex py-2 px-3 md:p-3 items-center gap-4 md:gap-10 lg:gap-28 z-1`}
+      className={`bg-[#33373B]/[37%] hover:bg-[#2e323440] cursor-pointer rounded-2xl flex py-2 px-3 md:p-3 items-center gap-4 md:gap-10 lg:gap-28`}
       key={`song-${song.id}`}
     >
       <div className="flex items-center">
@@ -55,7 +53,7 @@ const PlaylistSongCard = ({ handlePlayClick, song }) => {
           alt="art cover"
           className="w-12 h-auto rounded-xl object-cover aspect-square"
         />
-        <div className="md:ml-3 lg:ml-5 hidden md:flex z-2 items-center">
+        <div className="md:ml-3 lg:ml-5 hidden md:flex items-center">
           <button onClick={handleFavouriteToggle}>
             {likedSong ? (
               <BsFillHeartFill className="text-[#ce4b4b]/[80%] w-5 h-5" />
