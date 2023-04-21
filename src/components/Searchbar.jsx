@@ -13,6 +13,16 @@ const Searchbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const inputRef = useRef(null);
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [color, setColor] = useState(false);
+  const changeColor = () => {
+    if (window.scrollY >= 75) {
+      setColor(true);
+    } else {
+      setColor(false);
+    }
+  };
+
+  window.addEventListener("scroll", changeColor);
 
   const handleSearchTermChange = (event) => {
     const value = event.target.value;
@@ -82,14 +92,16 @@ const Searchbar = () => {
         value={searchTerm}
         onChange={handleSearchTermChange}
         placeholder="Search artists"
-        className="bg-transparent md:pl-12 mr-12 md:mr-0 py-1 focus:outline-none text-white w-full md:text-start text-end"
+        className={`md:pl-12 px-3 md:px-0 mr-12 md:mr-0 py-1 focus:outline-none transition rounded-xl duration-500 ease-in-out text-white ${
+          color ? "bg-[#1a1e1fde] placeholder-white" : "bg-transparent"
+        } w-full md:text-start text-end`}
       />
       {showSuggestions &&
         searchTerm &&
         (filteredSuggestions.length > 0 ? (
           <ul
             id="style-1"
-            className="absolute right-3 md:left-3 z-10 bg-[#1A1E1F] top-9 shadow-md overflow-y-auto max-h-60 w-[100%] rounded-lg"
+            className="absolute right-3 md:left-1 z-10 bg-[#1A1E1F] top-9 shadow-md overflow-y-auto max-h-60 w-[100%] rounded-lg"
           >
             {filteredSuggestions?.map((song, i) => {
               const handlePlayClick = () => {
@@ -110,12 +122,14 @@ const Searchbar = () => {
             })}
           </ul>
         ) : (
-          <p className="absolute right-3 md:left-3 z-10 bg-[#1A1E1F] top-9 shadow-md p-4 w-[100%] rounded-lg text-slate-300">
+          <p className="absolute right-3 md:left-1 z-10 bg-[#1A1E1F] top-9 shadow-md p-4 w-[100%] rounded-lg text-slate-300">
             No results found
           </p>
         ))}
       <div className="absolute right:right-0 md:left-0 top-0 bottom-0 flex items-center pl-3">
-        <BiSearch className="fill-white/[25%] w-5 h-auto" />
+        <BiSearch
+          className={` w-5 h-auto ${color ? "fill-white" : "fill-white/[25%]"}`}
+        />
       </div>
     </div>
   );
