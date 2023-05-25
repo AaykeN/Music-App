@@ -16,7 +16,7 @@ const Topbar = () => {
   return (
     <>
       <div
-        className={`px-9 h-[75px] sticky top-0 z-20 items-center  hover:border-gray-100 scroll flex md:justify-start justify-end`}
+        className={`px-3 md:px-7 h-[75px] sticky top-0 z-20 items-center md:bg-transparent bg-[#1d2123] scroll flex md:justify-start justify-end`}
       >
         <Searchbar />
       </div>
