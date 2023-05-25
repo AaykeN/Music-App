@@ -65,7 +65,7 @@ const Home = () => {
   );
 
   return (
-    <div className="px-7 container-padding">
+    <div className="px-4 md:px-7 container-padding">
       <section className="flex flex-col lg:flex-row gap-10 flex-1 ">
         <CurratedPlaylist />
         <TopChart />
