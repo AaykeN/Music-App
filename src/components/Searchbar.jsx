@@ -93,7 +93,9 @@ const Searchbar = () => {
         onChange={handleSearchTermChange}
         placeholder="Search artists"
         className={`md:pl-12 px-3 md:px-0 mr-12 md:mr-0 py-1 focus:outline-none transition rounded-xl duration-500 ease-in-out text-white ${
-          color ? "bg-[#1a1e1fde] placeholder-white" : "bg-transparent"
+          color
+            ? "bg-transparent md:bg-[#1a1e1fde] md:placeholder-white"
+            : "bg-transparent"
         } w-full md:text-start text-end`}
       />
       {showSuggestions &&
@@ -128,7 +130,9 @@ const Searchbar = () => {
         ))}
       <div className="absolute right:right-0 md:left-0 top-0 bottom-0 flex items-center pl-3">
         <BiSearch
-          className={` w-5 h-auto ${color ? "fill-white" : "fill-white/[25%]"}`}
+          className={` w-5 h-auto ${
+            color ? "fill-white/[25%] md:fill-white" : "fill-white/[25%]"
+          }`}
         />
       </div>
     </div>
