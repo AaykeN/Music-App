@@ -1,13 +1,13 @@
-import { useDispatch } from "react-redux";
-import { playPause, setActiveSong } from "../redux/features/playerSlice";
-import { useGetNewMusicQuery } from "../redux/services/service";
-import PlayPause from "./PlayPause";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode } from "swiper";
-import Loader from "./Loader";
-import SubHeading from "./SubHeading";
 import "swiper/css";
 import "swiper/css/free-mode";
+import Loader from "./Loader";
+import { FreeMode } from "swiper";
+import PlayPause from "./PlayPause";
+import SubHeading from "./SubHeading";
+import { useDispatch } from "react-redux";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useGetNewMusicQuery } from "../redux/services/service";
+import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
 const NewRelease = ({ useQueryHook, isPlaying, activeSong }) => {
   const { data, isFetching, error } = useQueryHook();
@@ -72,7 +72,6 @@ const NewRelease = ({ useQueryHook, isPlaying, activeSong }) => {
         slidesPerView="auto"
         spaceBetween={35}
         freeMode
-        // centeredSlides
         centeredSlidesBounds
         modules={[FreeMode]}
         className="flex mt-4 overflow-x-hidden"

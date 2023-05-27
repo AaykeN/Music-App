@@ -1,12 +1,9 @@
-import logo from "../assets/img/logo.svg";
-import { RiCloseLine } from "react-icons/ri";
-import { HiOutlineMenu, HiMenuAlt4 } from "react-icons/hi";
-
-import { Link, NavLink } from "react-router-dom";
-import { links } from "../assets/constants";
 import { useState } from "react";
-
-import { ReactComponent as Home } from "../assets/img/Home-1.svg";
+import logo from "../assets/img/logo.svg";
+import { HiMenuAlt4 } from "react-icons/hi";
+import { RiCloseLine } from "react-icons/ri";
+import { links } from "../assets/constants";
+import { Link, NavLink } from "react-router-dom";
 
 const NavLinks = ({ handleClick, mobileMenuOpen }) => {
   return (

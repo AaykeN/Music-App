@@ -1,10 +1,5 @@
 import "./App.css";
-import {
-  Routes,
-  Route,
-  Navigate,
-  BrowserRouter as Router,
-} from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
 // Components
 import Home from "./pages/Home";

@@ -8,7 +8,6 @@ const MyCollection = () => {
   );
 
   const [currentPlaylist, setCurrentPlaylist] = useState(null);
-  console.log(currentPlaylist);
   const handlePlaylistClick = (playlist) => {
     if (playlist !== currentPlaylist) {
       setCurrentPlaylist(playlist);

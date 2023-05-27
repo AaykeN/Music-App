@@ -1,12 +1,12 @@
-import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setActiveSong, playPause } from "../redux/features/playerSlice";
-import { useGetPlaylistQuery } from "../redux/services/service";
-import LikeButton from "../components/Buttons/LikeButton";
-import AddCollectionBtn from "../components/Buttons/AddCollectionBtn";
-import PlayAllBtn from "../components/Buttons/PlayAllBtn";
-import PlaylistSongCard from "../components/Cards/PlaylistSongCard";
 import Loader from "../components/Loader";
+import { useParams } from "react-router-dom";
+import LikeButton from "../components/Buttons/LikeButton";
+import PlayAllBtn from "../components/Buttons/PlayAllBtn";
+import { useGetPlaylistQuery } from "../redux/services/service";
+import PlaylistSongCard from "../components/Cards/PlaylistSongCard";
+import AddCollectionBtn from "../components/Buttons/AddCollectionBtn";
+import { setActiveSong, playPause } from "../redux/features/playerSlice";
 
 const findPlaylist = (playlistId) => {
   const { data, isFetching, error } = useGetPlaylistQuery();
@@ -107,16 +107,3 @@ const Playlist = () => {
 };
 
 export default Playlist;
-
-// style={{
-//   top: 0,
-//   backgroundRepeat: "no-repeat",
-//   opacity: 0.05,
-//   position: `absolute`,
-//   width: `100vw`,
-//   height: `100vh`,
-//   objectFit: `cover`,
-//   objectPosition: `center`,
-//   left: 0,
-//   backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%), url(${playlist?.cover})`,
-// }}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { HiDotsVertical } from "react-icons/hi";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,9 +10,7 @@ import PopoverBtn from "../PopoverBtn";
 
 const PlaylistSongCard = ({ handlePlayClick, song }) => {
   const { favouritesSong } = useSelector((state) => state.persisted.favourites);
-  const { activeSong, isPlaying } = useSelector(
-    (state) => state.persisted.player
-  );
+  const { activeSong } = useSelector((state) => state.persisted.player);
   const isActiveSong =
     activeSong &&
     activeSong.title === song.title &&

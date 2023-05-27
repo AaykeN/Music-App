@@ -1,10 +1,10 @@
-import Loader from "../components/Loader";
 import { useState } from "react";
-import PlaylistCard from "../components/Cards/PlaylistCard";
-import { setActiveSong, playPause } from "../redux/features/playerSlice";
-import { useDispatch, useSelector } from "react-redux";
-import PlaylistSongCard from "../components/Cards/PlaylistSongCard";
+import Loader from "../components/Loader";
 import SubHeading from "../components/SubHeading";
+import { useDispatch, useSelector } from "react-redux";
+import PlaylistCard from "../components/Cards/PlaylistCard";
+import PlaylistSongCard from "../components/Cards/PlaylistSongCard";
+import { setActiveSong, playPause } from "../redux/features/playerSlice";
 
 const MyCollectionsAndLikes = ({ activeButton }) => {
   const propertyName = activeButton;

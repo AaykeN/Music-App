@@ -1,5 +1,5 @@
-import Searchbar from "./Searchbar";
 import { useState } from "react";
+import Searchbar from "./Searchbar";
 
 const Topbar = () => {
   const [color, setColor] = useState(false);
